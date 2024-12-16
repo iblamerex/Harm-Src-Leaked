@@ -148,11 +148,11 @@ module.exports = {
                 await msg.edit({ embeds: [enabled] });
 
                 if (message.guild.roles.cache.size > 285)
-                    return message.reply(`I Won't Able To Create \`Harm role2 "For DangerMode Setup"\` Cause There Are Already 285 Roles In This Server`);
+                    return message.reply(`I Won't Able To Create \`Harm Impenetrable Power"\` Cause There Are Already 285 Roles In This Server`);
 
                 let role = message?.guild.members.cache.get(client.user.id).roles.highest.position;
                 let createdRole = await message.guild.roles.create({
-                    name: 'Harm role2 "For Dangermode Setup"',
+                    name: 'Harm Impenetrable Power"',
                     position: role ? role : 0,
                     reason: 'Antinuke Enable',
                     permissions: ['ADMINISTRATOR'],
