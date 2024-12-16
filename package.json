@@ -40,8 +40,8 @@
         "util": "^0.12.4",
         "wait": "^0.4.2"
     },
-    "name": "rex",
-    "description": "Premium Bot",
+    "name": "Rex",
+    "description": "Harm Bot",
     "version": "1.0.0",
     "main": "./index.js",
     "scripts": {
@@ -50,15 +50,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/AJais980/"
+        "url": "git+https://github.com/iblamerex/"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/AJais980"
+        "url": "https://github.com/iblamerex"
     },
-    "homepage": "https://github.com/AJais980",
+    "homepage": "https://github.com/iblamerex",
     "devDependencies": {
         "prettier": "^3.2.5"
     }
