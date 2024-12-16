@@ -5,7 +5,7 @@ Moot dia tumhare Harm pe Bitzxier Skid Bot 😂
 
 
 # Contributer 
-- ReXx
+- ReXx [.rex4sure]
 
   
 # Links
