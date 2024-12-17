@@ -23,7 +23,7 @@ module.exports = {
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | You must have \`Administrator\` permissions to use this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | You must have \`Administrator\` permissions to use this command.`
                         )
                 ]
             })
@@ -34,7 +34,7 @@ module.exports = {
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | I don't have \`Administrator\` permissions to execute this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | I don't have \`Administrator\` permissions to execute this command.`
                         )
                 ]
             })
@@ -49,7 +49,7 @@ module.exports = {
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | You must have a higher role than me to use this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | You must have a higher role than me to use this command.`
                         )
                 ]
             })
@@ -165,7 +165,7 @@ module.exports = {
                                         new MessageEmbed()
                                             .setColor(client.color)
                                             .setDescription(
-                                                `<:tick:1317818894546898985> | Success! ${channel} has been successfully added to my ignore list.`
+                                                `<a:Tick:1306038825054896209> | Success! ${channel} has been successfully added to my ignore list.`
                                             )
                                     ]
                                 })
@@ -175,7 +175,7 @@ module.exports = {
                                         new MessageEmbed()
                                             .setColor(client.color)
                                             .setDescription(
-                                                `<:cross:1317733546261217300> | Oh no! It looks like ${channel} is already in my ignore list.`
+                                                `<:emoji_1725906884992:1306038885293494293>  | Oh no! It looks like ${channel} is already in my ignore list.`
                                             )
                                     ]
                                 })
@@ -187,7 +187,7 @@ module.exports = {
                                     new MessageEmbed()
                                         .setColor(client.color)
                                         .setDescription(
-                                            `<:cross:1317733546261217300> | Oops! It seems there was an issue. Please make sure to provide a valid channel for the ignore list.`
+                                            `<:emoji_1725906884992:1306038885293494293>  | Oops! It seems there was an issue. Please make sure to provide a valid channel for the ignore list.`
                                         )
                                 ]
                             })
@@ -238,7 +238,7 @@ module.exports = {
                                         new MessageEmbed()
                                             .setColor(client.color)
                                             .setDescription(
-                                                `<:tick:1317818894546898985> | Success! ${channel} has been successfully removed from my ignore list.`
+                                                `<a:Tick:1306038825054896209> | Success! ${channel} has been successfully removed from my ignore list.`
                                             )
                                     ]
                                 })
@@ -248,7 +248,7 @@ module.exports = {
                                         new MessageEmbed()
                                             .setColor(client.color)
                                             .setDescription(
-                                                ` <:cross:1317733546261217300> | Oops! It appears that ${channel} is not on my ignore list.`
+                                                ` <:emoji_1725906884992:1306038885293494293>  | Oops! It appears that ${channel} is not on my ignore list.`
                                             )
                                     ]
                                 })
@@ -260,7 +260,7 @@ module.exports = {
                                     new MessageEmbed()
                                         .setColor(client.color)
                                         .setDescription(
-                                            `<:cross:1317733546261217300> | Oops! It seems there was an issue. Please make sure to provide a valid channel.`
+                                            `<:emoji_1725906884992:1306038885293494293>  | Oops! It seems there was an issue. Please make sure to provide a valid channel.`
                                         )
                                 ]
                             })
@@ -314,7 +314,7 @@ module.exports = {
                                     new MessageEmbed()
                                         .setColor(client.color)
                                         .setDescription(
-                                            `<:cross:1317733546261217300> | Oops! It seems like there's no designated ignore channel set up in this server. No worries, though! You can easily configure one to enhance your experience.`
+                                            `<:emoji_1725906884992:1306038885293494293>  | Oops! It seems like there's no designated ignore channel set up in this server. No worries, though! You can easily configure one to enhance your experience.`
                                         )
                                 ]
                             })
@@ -439,7 +439,7 @@ module.exports = {
                                         new MessageEmbed()
                                             .setColor(client.color)
                                             .setDescription(
-                                                `<:tick:1317818894546898985> | Success! The ${role} role has been successfully added to my ignore bypass list.`
+                                                `<a:Tick:1306038825054896209> | Success! The ${role} role has been successfully added to my ignore bypass list.`
                                             )
                                     ]
                                 })
@@ -449,7 +449,7 @@ module.exports = {
                                         new MessageEmbed()
                                             .setColor(client.color)
                                             .setDescription(
-                                                `<:cross:1317733546261217300> | Oops! It appears that ${role} is already in my ignore bypass list.`
+                                                `<:emoji_1725906884992:1306038885293494293>  | Oops! It appears that ${role} is already in my ignore bypass list.`
                                             )
                                     ]
                                 })
@@ -461,7 +461,7 @@ module.exports = {
                                     new MessageEmbed()
                                         .setColor(client.color)
                                         .setDescription(
-                                            `<:cross:1317733546261217300> | Oops! It seems there was an issue. Please ensure you've provided a valid role for the ignore bypass list.`
+                                            `<:emoji_1725906884992:1306038885293494293>  | Oops! It seems there was an issue. Please ensure you've provided a valid role for the ignore bypass list.`
                                         )
                                 ]
                             })
@@ -511,7 +511,7 @@ module.exports = {
                                         new MessageEmbed()
                                             .setColor(client.color)
                                             .setDescription(
-                                                `<:tick:1317818894546898985> | Success! The ${role} has been successfully removed from my ignore bypass list.`
+                                                `<a:Tick:1306038825054896209> | Success! The ${role} has been successfully removed from my ignore bypass list.`
                                             )
                                     ]
                                 })
@@ -521,7 +521,7 @@ module.exports = {
                                         new MessageEmbed()
                                             .setColor(client.color)
                                             .setDescription(
-                                                ` <:cross:1317733546261217300> | Oops! It appears that the ${role} is not on my ignore bypass list.`
+                                                ` <:emoji_1725906884992:1306038885293494293>  | Oops! It appears that the ${role} is not on my ignore bypass list.`
                                             )
                                     ]
                                 })
@@ -533,7 +533,7 @@ module.exports = {
                                     new MessageEmbed()
                                         .setColor(client.color)
                                         .setDescription(
-                                            ` <:cross:1317733546261217300> | Oops! It seems there was an issue. Please make sure to provide a valid role.`
+                                            ` <:emoji_1725906884992:1306038885293494293>  | Oops! It seems there was an issue. Please make sure to provide a valid role.`
                                         )
                                 ]
                             })
@@ -586,7 +586,7 @@ module.exports = {
                                     new MessageEmbed()
                                         .setColor(client.color)
                                         .setDescription(
-                                            `<:cross:1317733546261217300>
+                                            `<:emoji_1725906884992:1306038885293494293> 
                                              | Oops! It seems like there's no designated ignore bypass role set up in this server. No worries, though! You can easily configure one to enhance your experience.`
                                         )
                                 ]

@@ -11,7 +11,7 @@ module.exports = {
         )
         const embed = new MessageEmbed()
         embed.setColor(client.color)
-        embed.setDescription(`I am online from <t:${duration1}:R>`)
+        embed.setDescription(`**I am online from** <t:${duration1}:R>`)
         message.channel.send({ embeds: [embed] })
     }
 }

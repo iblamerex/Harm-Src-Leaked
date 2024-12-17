@@ -11,7 +11,7 @@ module.exports = {
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | You must have \`Kick Members\` permissions to use this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | You must have \`Kick Members\` permissions to use this command.`
                         )
                 ]
             })
@@ -27,7 +27,7 @@ module.exports = {
                         new MessageEmbed()
                             .setColor(client.color)
                             .setDescription(
-                                `<:cross:1317733546261217300> | Please Provide Valid user ID or Mention Member.`
+                                `<:emoji_1725906884992:1306038885293494293>  | Please Provide Valid user ID or Mention Member.`
                             )
                     ]
                 })
@@ -51,7 +51,7 @@ module.exports = {
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | You can't kick me.`
+                            `<:emoji_1725906884992:1306038885293494293>  | You can't kick me.`
                         )
                 ]
             })
@@ -62,7 +62,7 @@ module.exports = {
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | I can't kick the owner of this server.`
+                            `<:emoji_1725906884992:1306038885293494293>  | I can't kick the owner of this server.`
                         )
                 ]
             })
@@ -72,7 +72,7 @@ module.exports = {
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | You must have a higher role than me to use this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | You must have a higher role than me to use this command.`
                         )
                 ]
             })
@@ -81,7 +81,7 @@ module.exports = {
         if (!user.kickable) {
             const embed = new MessageEmbed()
                 .setDescription(
-                    `<:cross:1317733546261217300> |  My highest role is below **<@${user.id}>** `
+                    `<:emoji_1725906884992:1306038885293494293>  |  My highest role is below **<@${user.id}>** `
                 )
                 .setColor(client.color)
             return message.channel.send({ embeds: [embed] })
@@ -102,7 +102,7 @@ module.exports = {
 
         const done = new MessageEmbed()
             .setDescription(
-                `<:tick:1317818894546898985> | Successfully kicked **${user.user.tag}** from the server.`
+                `<a:Tick:1306038825054896209> | Successfully kicked **${user.user.tag}** from the server.`
             )
             .setColor(client.color)
         return message.channel.send({ embeds: [done] })

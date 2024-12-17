@@ -77,7 +77,7 @@ module.exports = {
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:tick:1317818894546898985> | Successfully deafened <@${member.user.id}> From Voice!`
+                            `<a:Tick:1306038825054896209> | Successfully deafened <@${member.user.id}> From Voice!`
                         )
                 ]
             })

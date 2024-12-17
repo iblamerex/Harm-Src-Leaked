@@ -3,16 +3,17 @@ const { MessageEmbed } = require('discord.js')
 module.exports = {
     name: 'mediachannel',
     aliases: ['media'],
-    category: 'mod',
-    premium: false,
+    category: 'owner',
+    premium: true,
     run: async (client, message, args) => {
+if (!this.config.admin.includes(message.author.id)) return
         if (!message.member.permissions.has('MANAGE_GUILD')) {
             return message.channel.send({
                 embeds: [
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `${client.emoji.cross} | You must have \`MANAGE SERVER\` permissions to use this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | You must have \`MANAGE SERVER\` permissions to use this command.`
                         )
                 ]
             });
@@ -23,7 +24,7 @@ module.exports = {
                     embed
                         .setColor(client.color)
                         .setDescription(
-                            `${client.emoji.cross} | I don't have \`Administrator\` permissions to execute this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | I don't have \`Administrator\` permissions to execute this command.`
                         )
                 ]
             })
@@ -35,12 +36,12 @@ module.exports = {
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `${client.emoji.cross} | You must have a higher role than me to use this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | You must have a higher role than me to use this command.`
                         )
                 ]
             })
         }
-        let prefix = '&' || message.guild.prefix
+        let prefix = '$' || message.guild.prefix
         const option = args[0]
 
         const media = new MessageEmbed()
@@ -79,7 +80,7 @@ module.exports = {
                         new MessageEmbed()
                             .setColor(client.color)
                             .setDescription(
-                                `${client.emoji.cross} | Oops! It seems there was an issue. Please make sure to provide a valid channel for the media configuration.`
+                                `<:emoji_1725906884992:1306038885293494293>  | Oops! It seems there was an issue. Please make sure to provide a valid channel for the media configuration.`
                             )
                     ]
                 })
@@ -89,7 +90,7 @@ module.exports = {
                         new MessageEmbed()
                             .setColor(client.color)
                             .setDescription(
-                                `${client.emoji.cross} | You cannot add any voice channels as media channel `
+                                `<:emoji_1725906884992:1306038885293494293>  | You cannot add any voice channels as media channel `
                             )
                     ]
                 })
@@ -103,7 +104,7 @@ module.exports = {
                         new MessageEmbed()
                             .setColor(client.color)
                             .setDescription(
-                                `${client.emoji.tick} | Successfully Added ${channel} As Media Only Channel`
+                                `<a:Tick:1306038825054896209> | Successfully Added ${channel} As Media Only Channel`
                             )
                     ]
                 })
@@ -116,7 +117,7 @@ module.exports = {
                         new MessageEmbed()
                             .setColor(client.color)
                             .setDescription(
-                                `${client.emoji.tick} | There Is No Media Only Channel Configuration In This Server.!`
+                                `<a:Tick:1306038825054896209> | There Is No Media Only Channel Configuration In This Server.!`
                             )
                     ]
                 })
@@ -127,7 +128,7 @@ module.exports = {
                         new MessageEmbed()
                             .setColor(client.color)
                             .setDescription(
-                                `${client.emoji.tick} | Successfully Disabled Media Only Configuration.!`
+                                `<a:Tick:1306038825054896209> | Successfully Disabled Media Only Configuration.!`
                             )
                     ]
                 })
@@ -140,7 +141,7 @@ module.exports = {
                         new MessageEmbed()
                             .setColor(client.color)
                             .setDescription(
-                                `${client.emoji.cross} | No Media Only configured is Set.!`
+                                `<:emoji_1725906884992:1306038885293494293>  | No Media Only configured is Set.!`
                             )
                     ]
                 })

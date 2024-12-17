@@ -7,13 +7,13 @@ module.exports = {
     category: 'security',
     premium: false,
     run: async (client, message, args) => {
-        if (message.guild.memberCount < 40) {
+        if (message.guild.memberCount < 0) {
             return message.channel.send({
                 embeds: [
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | Your Server Doesn't Meet My 40 Member Criteria`
+                            `<:emoji_1725906884992:1306038885293494293>  | Your Server Doesn't Meet My 30 Member Criteria`
                         )
                 ]
             })
@@ -29,7 +29,7 @@ module.exports = {
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | Only the server owner or an extra owner with a higher role than mine is authorized to execute this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | Only the server owner or an extra owner with a higher role than mine is authorized to execute this command.`
                         )
                 ]
             })
@@ -44,7 +44,7 @@ module.exports = {
             const higherole = new MessageEmbed()
                 .setColor(client.color)
                 .setDescription(
-                    `<:cross:1317733546261217300> | Only the server owner or extra owner with a higher role than mine can execute this command.
+                    `<:emoji_1725906884992:1306038885293494293>  | Only the server owner or extra owner with a higher role than mine can execute this command.
 
 
 
@@ -76,7 +76,7 @@ module.exports = {
                 .setDescription(` ** ${message.guild.name} security settings <:stolen_emoji:1245605073036378183>
 Ohh NO! looks like your server doesn't enabled security
 
-Current Status : <:red:1290545303409393727><:greentick:1290545729688965232>
+Current Status : <:emoji_1725906884992:1306038885293494293><a:Tick:1306038825054896209>
 
 To enable use antinuke enable ** `)
             message.channel.send({ embeds: [dissable] })
@@ -111,7 +111,7 @@ To enable use antinuke enable ** `)
                                 new MessageEmbed()
                                     .setColor(client.color)
                                     .setDescription(
-                                        `<:cross:1317733546261217300> | <@${user.id}> is not a whitelisted member.`
+                                        `<:emoji_1725906884992:1306038885293494293>  | <@${user.id}> is not a whitelisted member.`
                                     )
                             ]
                         })
@@ -128,7 +128,7 @@ To enable use antinuke enable ** `)
                                         new MessageEmbed()
                                             .setColor(client.color)
                                             .setDescription(
-                                                `<:cross:1317733546261217300> | <@${user.id}> is not a whitelisted member.`
+                                                `<:emoji_1725906884992:1306038885293494293>  | <@${user.id}> is not a whitelisted member.`
                                             )
                                     ]
                                 })
@@ -146,7 +146,7 @@ To enable use antinuke enable ** `)
                                         new MessageEmbed()
                                             .setColor(client.color)
                                             .setDescription(
-                                                `<:tick:1317818894546898985> | Successfully removed <@${user.id}> from whitelisted user.`
+                                                `<a:Tick:1306038825054896209> | Successfully removed <@${user.id}> from whitelisted user.`
                                             )
                                     ]
                                 })

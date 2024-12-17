@@ -6,17 +6,17 @@ const {
 } = require('discord.js')
 module.exports = {
     name: 'setup',
-    aliases: ['customrole', 'custom'],
+    aliases: ['customrole'],
     subcommand: ['add', 'remove', 'config', 'reset', 'list', 'reqrole'],
     category: 'customrole',
     run: async (client, message, args) => {
-        if (message.guild.memberCount < 40) {
+        if (message.guild.memberCount < 30) {
             return message.channel.send({
                 embeds: [
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | Your Server Doesn't Meet My 40 Member Criteria`
+                            `${client.emoji.cross} | Your Server Doesn't Meet My 30 Member Criteria`
                         )
                 ]
             })
@@ -29,7 +29,7 @@ module.exports = {
                     embed
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | You must have \`Manage Roles\` permissions to use this command.`
+                            `${client.emoji.cross} | You must have \`Manage Roles\` permissions to use this command.`
                         )
                 ]
             })
@@ -40,7 +40,7 @@ module.exports = {
                     embed
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | I don't have \`Manage Roles\` permissions to execute this command.`
+                            `${client.emoji.cross} | I don't have \`Manage Roles\` permissions to execute this command.`
                         )
                 ]
             })
@@ -55,7 +55,7 @@ module.exports = {
                     embed
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | You must have a higher role than me to use this command.`
+                            `${client.emoji.cross} | You must have a higher role than me to use this command.`
                         )
                 ]
             })
@@ -137,29 +137,30 @@ module.exports = {
                         new MessageEmbed()
                             .setColor(client.color)
                             .setDescription(
-                                `<:cross:1317733546261217300> | ${message.guild.prefix}setup add <name> <role>`
+                                `${client.emoji.cross} | ${message.guild.prefix}setup add <name> <role>`
                             )
                     ]
                 })
-            const name = args[1].toLowerCase();
-            if (name.match(/<(@&|@)\d+>/)) {
-                return message.channel.send({
-                    embeds: [
-                        new MessageEmbed()
+            const name = args[1].toLowerCase()
+            if (data)
+                if (data.names.length > 0) {
+                    if (data.names.includes(name)) {
+                        const embed = new MessageEmbed()
                             .setColor(client.color)
                             .setDescription(
-                                `<:cross:1317733546261217300> | **Custom role** names cannot contain **mentions**. Please provide a different **name**.`
+                                `${client.emoji.cross} | Oops! The custom role **${name}** already exists in my list. Please choose a different name.`
                             )
-                    ]
-                });
-            }
+
+                        return message.channel.send({ embeds: [embed] })
+                    }
+                }
             if (!args[2])
                 return message.channel.send({
                     embeds: [
                         new MessageEmbed()
                             .setColor(client.color)
                             .setDescription(
-                                `<:cross:1317733546261217300> | ${message.guild.prefix}setup add ${args[1]} <role>`
+                                `${client.emoji.cross} | ${message.guild.prefix}setup add ${args[1]} <role>`
                             )
                     ]
                 })
@@ -177,7 +178,7 @@ module.exports = {
                         new MessageEmbed()
                             .setColor(client.color)
                             .setDescription(
-                                `<:cross:1317733546261217300> | Role **not** found!`
+                                `${client.emoji.cross} | Role **not** found!`
                             )
                     ]
                 })
@@ -187,7 +188,7 @@ module.exports = {
                         new MessageEmbed()
                             .setColor(client.color)
                             .setDescription(
-                                `<:cross:1317733546261217300> | <@&${role.id}> isn't a **server** role!`
+                                `${client.emoji.cross} | <@&${role.id}> isn't a **server** role!`
                             )
                     ]
                 })
@@ -222,7 +223,7 @@ module.exports = {
                     embeds: [
                         new MessageEmbed()
                             .setDescription(
-                                `<:cross:1317733546261217300> | I can't **add** <@&${role.id}> in my **custom role** list because it has ${new Permissions(
+                                `${client.emoji.cross} | I can't **add** <@&${role.id}> in my **custom role** list because it has ${new Permissions(
                                     role.permissions.bitfield
                                 )
                                     .toArray()
@@ -263,8 +264,7 @@ module.exports = {
                         )
                 ]
             })
-        }
-     else if (input == 'remove') {
+        } else if (input == 'remove') {
             let data = await client.db?.get(`customrole_${message.guild.id}`)
             if (!data) {
                 await client.db?.set(`customrole_${message.guild.id}`, {
@@ -322,7 +322,7 @@ module.exports = {
                 const embed = new MessageEmbed()
                     .setColor(client.color)
                     .setDescription(
-                        `<:cross:1317733546261217300> | Oops! The role with the name **${roleName}** couldn't be found in my custom role setups. Double-check the name and try again.`
+                        `${client.emoji.cross} | Oops! The role with the name **${roleName}** couldn't be found in my custom role setups. Double-check the name and try again.`
                     )
                 return message.channel.send({ embeds: [embed] })
             }
@@ -359,7 +359,7 @@ module.exports = {
                     .setColor(client.color)
                     .setTitle(`Nothing to Show`)
                     .setDescription(
-                        `<:cross:1317733546261217300> | Oops! There's nothing to display for custom role setups.`
+                        `${client.emoji.cross} | Oops! There's nothing to display for custom role setups.`
                     )
                     .setAuthor({
                         name: message.guild.name,
@@ -381,7 +381,7 @@ module.exports = {
                         .setColor(client.color)
                         .setTitle(`Nothing to Show`)
                         .setDescription(
-                            `<:cross:1317733546261217300> | Oops! There's nothing to display for custom role setups.`
+                            `${client.emoji.cross} | Oops! There's nothing to display for custom role setups.`
                         )
                         .setAuthor({
                             name: message.guild.name,
@@ -412,7 +412,7 @@ module.exports = {
                         text: `Requested By ${message.author.tag}`,
                         iconURL: `${message.author.displayAvatarURL({ dynamic: true })}`
                     })
-                return ReXx(embed, client, message)
+                return Bitzxier(embed, client, message)
             }
         } else if (input == 'reset') {
             const data = await client.db?.get(`customrole_${message.guild.id}`)
@@ -522,7 +522,7 @@ module.exports = {
             ) {
                 const embed = new MessageEmbed()
                     .setColor(client.color)
-                    .setTitle(`<:cross:1317733546261217300> Role Position Issue`)
+                    .setTitle(`${client.emoji.cross} Role Position Issue`)
                     .setDescription(
                         `<@&${role.id}> cannot be assigned because its position is either equal to or higher than your highest role. Please adjust your roles or choose a role with a lower position.`
                     )
@@ -684,7 +684,7 @@ module.exports = {
         }
     }
 }
-async function ReXx(embed, client, message) {
+async function Bitzxier(embed, client, message) {
     let embeds = [],
         page = 0,
         i,

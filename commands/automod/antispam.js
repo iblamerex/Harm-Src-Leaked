@@ -1,8 +1,8 @@
 const { MessageEmbed } = require('discord.js')
-let enable = `<:disable:1318037005493342280><:enable:1318037008500658248>`
-let disable = `<:enable:1318037008500658248><:disable:1318037005493342280>`
-let protect = `<:mod:1318037003086073886>`
-let hii = `<:reddot:1317860462028914700>`
+let enable = `<:emoji_1725906884992:1306038885293494293><a:Tick:1306038825054896209>`
+let disable = `<a:Tick:1306038825054896209><:emoji_1725906884992:1306038885293494293>`
+let protect = `<:mod:1290920326313672766>`
+let hii = `<:Bl_dot:1291391196270428232>`
 const wait = require('wait')
 
 module.exports = {
@@ -15,13 +15,13 @@ module.exports = {
     run: async (client, message, args) => {
         const embed = new MessageEmbed().setColor(client.color)
 
-        if (message.guild.memberCount < 40) {
+        if (message.guild.memberCount < 0) {
             return message.channel.send({
                 embeds: [
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | Your Server Doesn't Meet My 40 Member Criteria`
+                            `<:emoji_1725906884992:1306038885293494293>  | Your Server Doesn't Meet My 30 Member Criteria`
                         )
                 ]
             })
@@ -33,7 +33,7 @@ module.exports = {
                     embed
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | You must have \`Administrator\` permissions to use this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | You must have \`Administrator\` permissions to use this command.`
                         )
                 ]
             })
@@ -44,7 +44,7 @@ module.exports = {
                     embed
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | I don't have \`Administrator\` permissions to execute this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | I don't have \`Administrator\` permissions to execute this command.`
                         )
                 ]
             })
@@ -59,7 +59,7 @@ module.exports = {
                     embed
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | You must have a higher role than me to use this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | You must have a higher role than me to use this command.`
                         )
                 ]
             })
@@ -74,33 +74,33 @@ module.exports = {
         const antispam = new MessageEmbed()
             .setThumbnail(client.user.avatarURL({ dynamic: true }))
             .setColor(client.color)
-            .setTitle('__**Antispam!**__')
+            .setTitle('__**Fortify Your Server with Antispam!**__')
             .setDescription(
-                'Prevent spam and maintain the integrity of your server with Antispam! Our advanced algorithms swiftly detect and handle spam messages, ensuring a clean and enjoyable environment for your community.'
+                'Defend your server against spam and uphold its integrity with Antispam! Our cutting-edge algorithms swiftly detect and handle spam messages, ensuring a pristine and enjoyable environment for your community.'
             )
             .addField(
-                '__**Antispam Enable**__',
+                '__**Activate Antispam**__',
                 `To enable Antispam, use \`${prefix}antispam enable\``
             )
             .addField(
-                '__**Antispam Disable**__',
+                '__**Deactivate Antispam**__',
                 `To disable Antispam, use \`${prefix}antispam disable\``
             )
             .addField(
-                '__**Antispam Punishment**__',
-                'Configure the punishment for spammers.'
+                '__**Configure Antispam Punishment**__',
+                'Choose the punishment for spammers.'
             )
             .addField(
-                '__**Options**__',
+                '__**Punishment Options**__',
                 '`ban` - Ban spammers, `kick` - Kick spammers, `mute` - Mute spammers'
             )
             .addField(
-                '__**Antispam Limit**__',
-                'Configure the message limit to trigger antispam.'
+                '__**Set Antispam Threshold**__',
+                'Adjust the message limit to trigger Antispam.'
             )
             .addField(
-                '__**Usage**__',
-                'Use numbers to specify the message limit, e.g., `4`, `10`'
+                '__**Threshold Usage**__',
+                'Specify the message limit with numbers, e.g., `4`, `10`'
             )
             .setTimestamp()
             .setFooter(client.user.username, client.user.displayAvatarURL())
@@ -124,7 +124,7 @@ module.exports = {
                         .setColor(client.color)
                         .setTitle('Antispam Enabled')
                         .setDescription(
-                            '**Congratulations! Antispam has been successfully enabled on your server.**'
+                            '**<a:Tick:1306038825054896209> | Congratulations! Antispam has been successfully enabled on your server.**'
                         )
                         .addField(
                             'Enhanced Protection',
@@ -180,7 +180,7 @@ module.exports = {
                         )
                         .addField(
                             'Impact',
-                            'Your server will no longer be protected against spam messages.'
+                            '<a:Tick:1306038825054896209> | Your server will no longer be protected against spam messages.'
                         )
                         .setTimestamp()
                         .setFooter(
@@ -194,7 +194,7 @@ module.exports = {
                         .setDescription(`**Antispam Status**`)
                         .addField(
                             'Current Status',
-                            `Antispam is already disabled on your server.\n\nCurrent Status: ${disable}`
+                            `<a:Tick:1306038825054896209> | Antispam is already disabled on your server.\n\nCurrent Status: ${disable}`
                         )
                         .addField(
                             'To Enable',
@@ -242,7 +242,7 @@ module.exports = {
                         .setColor(client.color)
                         .setTitle('Anti-Spam Punishment Configured')
                         .setDescription(
-                            'The anti-spam punishment has been successfully configured.'
+                            'T<a:Tick:1306038825054896209> | he anti-spam punishment has been successfully configured.'
                         )
                         .addField('Punishment Type', 'Ban')
                         .addField(
@@ -263,7 +263,7 @@ module.exports = {
                         .setColor(client.color)
                         .setTitle('Anti-Spam Punishment Configured')
                         .setDescription(
-                            'The anti-spam punishment has been successfully configured.'
+                            '<a:Tick:1306038825054896209> | The anti-spam punishment has been successfully configured.'
                         )
                         .addField('Punishment Type', 'Kick')
                         .addField(
@@ -284,7 +284,7 @@ module.exports = {
                         .setColor(client.color)
                         .setTitle('Anti-Spam Punishment Configured')
                         .setDescription(
-                            'The anti-spam punishment has been successfully configured.'
+                            '<a:Tick:1306038825054896209> | The anti-spam punishment has been successfully configured.'
                         )
                         .addField('Punishment Type', 'Mute')
                         .addField(
@@ -330,7 +330,7 @@ module.exports = {
                     const embedMessage = new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:tick:1317818894546898985> | **Spam Threshold Updated**`
+                            `<a:Tick:1306038825054896209> | **Spam Threshold Updated**`
                         )
                         .addField('New Spam Threshold', `${limit}`, true)
                         .setTimestamp()
@@ -343,7 +343,7 @@ module.exports = {
                     const embedMessage = new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | **Error: Invalid Message Count Limit**`
+                            `<:emoji_1725906884992:1306038885293494293>  | **Error: Invalid Message Count Limit**`
                         )
                         .addField(
                             'Valid Range',

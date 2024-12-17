@@ -48,7 +48,7 @@ module.exports = {
                         new MessageEmbed()
                             .setColor(client.color)
                             .setDescription(
-                                `<:cross:1317733546261217300> | I guess there is no bots in this server.`
+                                `<:emoji_1725906884992:1306038885293494293>  | I guess there is no bots in this server.`
                             )
                     ]
                 })
@@ -72,7 +72,7 @@ module.exports = {
                         new MessageEmbed()
                             .setColor(client.color)
                             .setDescription(
-                                `<:cross:1317733546261217300> | No roles found.`
+                                `<:emoji_1725906884992:1306038885293494293>  | No roles found.`
                             )
                     ]
                 })

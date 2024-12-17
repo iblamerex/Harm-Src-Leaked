@@ -20,7 +20,7 @@ module.exports = {
                     embed
                         .setColor(client.color)
                         .setDescription(
-                            `Please provide the required arguments.\n${prefix}noprefix \`<add/remove/list>\` \`<user id or mention>\``
+                            `Please provide the required arguments.\n${prefix}noprefix \`<add/remove/list>\` \`<user id>\``
                         )
                 ]
             })
@@ -51,43 +51,40 @@ module.exports = {
                     embed
                         .setColor(client.color)
                         .setDescription(
-                            `Please provide the required arguments.\n${prefix}noprefix \`<add/remove/list>\` \`<user id or mention>\``
+                            `Please provide the required arguments.\n${prefix}noprefix \`<add/remove/list>\` \`<user id>\``
                         )
                 ]
             })
         }
-
-        // Process user mention or ID
-        let userId = args[1].replace(/<@!?(\d+)>/, '$1'); // Extract user ID from mention
-        let user = await client.users.fetch(userId).catch(() => {
+        let user = await client.users.fetch(`${args[1]}`).catch((er) => {
             check += 1
         })
-        if (check == 1 || !user) {
+        if (check == 1) {
             return message.channel.send({
                 embeds: [
                     embed
                         .setColor(client.color)
                         .setDescription(
-                            `Please provide a valid user ID or mention.\n${prefix}noprefix \`<add/remove/list>\` \`<user id or mention>\``
+                            `Please provide the required arguments.\n${prefix}noprefix \`<add/remove/list>\` \`<user id>\``
                         )
                 ]
             })
         }
-
         let added = (await client.db.get(`noprefix_${client.user.id}`))
             ? await client.db.get(`noprefix_${client.user.id}`)
             : []
 
         let opt = args[0].toLowerCase()
         if (opt == `add` || opt == `a` || opt == `+`) {
-            if (added.includes(user.id)) {
-                return message.channel.send({
-                    embeds: [
-                        embed
-                            .setDescription(`${client.emoji.cross} | <@${user.id}> is Already present in my **No Prefix**`)
-                    ]
-                })
-            }
+            if(added.includes(user.id)) {
+        return message.channel.send({
+            embeds: [
+                embed
+                    .setDescription(`${client.emoji.cross} | <@${user.id}> is Already present in my **No Prefix**`)
+
+]
+        });
+      }
             added.push(`${user.id}`)
             added = client.util.removeDuplicates(added)
             await client.db.set(`noprefix_${client.user.id}`, added)
@@ -97,7 +94,7 @@ module.exports = {
                     embed
                         .setColor(client.color)
                         .setDescription(
-                            `<:tick:1317818894546898985> | **<@${user.id}> (${user.id})** has been added as a **No Prefix** user.`
+                            `<a:Tick:1306038825054896209> | **<@${user.id}> (${user.id})** has been added as a **No Prefix** user.`
                         )
                 ]
             })
@@ -112,7 +109,7 @@ module.exports = {
                     embed
                         .setColor(client.color)
                         .setDescription(
-                            `<:tick:1317818894546898985> | **<@${user.id}> (${user.id})** has been removed from a **No Prefix** user.`
+                            `<a:Tick:1306038825054896209> | **<@${user.id}> (${user.id})** has been removed from a **No Prefix** user.`
                         )
                 ]
             })
@@ -122,7 +119,7 @@ module.exports = {
                 embed
                     .setColor(client.color)
                     .setDescription(
-                        `${prefix}noprefix \`<add/remove/list>\` \`<user id or mention>\``
+                        `${prefix}noprefix \`<add/remove/list>\` \`<user id>\``
                     )
             ]
         })

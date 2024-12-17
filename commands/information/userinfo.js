@@ -55,19 +55,22 @@ module.exports = {
             if(me.user.id === message.guild.ownerId) keys = 'Server Owner';
             else keys = 'Server Member';
             
-            let emb = new MessageEmbed().setColor(client.color).setAuthor({name : `${me.user.tag}'s Information` , iconURL : me.user.displayAvatarURL({dynamic : true})}).setThumbnail(me.user.displayAvatarURL({dynamic : true})).addFields([
+            let emb = new MessageEmbed().setColor(`#2f3136`).setAuthor({name : `${me.user.tag}'s Information` , iconURL : me.user.displayAvatarURL({dynamic : true})}).setThumbnail(me.user.displayAvatarURL({dynamic : true})).addFields([
                 {
                     name : `__General Information__`,
-                    value : `**Name** : \`${me.user.username}\` \n **Discriminator** : \`${me.user.discriminator}\` \n **Nickname** : ${me.nickname ? me.nickname : '`None`'} \n\n**Overview**\n **Badges** : ${flags} \n **Type** : ${me.user.bot ? `Bot` : `Human`}`
+                    value : `**UserName** : ${me.user.username} \n **User Id** : ${me.user.id} \n **Nickname** : ${me.nickname ? me.nickname : 'None'} \n **Bot?** : ${me.user.bot ? `${client.emoji.tick}` : `${client.emoji.cross}`} \n **Discord Badges** : ${flags} \n **Account Created** : <t:${Math.round(me.user.createdTimestamp / 1000)}:R> \n **Server Joined** : <t:${Math.round(me.joinedTimestamp / 1000)}:R>`
                 },
                 {
-                    name : `**Server Relating Information**`,
-                    value : `**Roles** : ${me.roles.cache.size < 0 ? [...me.roles.cache.values()].sort((a,b) => b.rawPosition - a.rawPosition).map(r => `<@&${r.id}>`).join(', ') : me.roles.cache.size > 30 ? trimArray(me.roles.cache) : 'NO ROLES'}`
+                    name : `__Roles Info__`,
+                    value : `**Highest Role** : ${me.roles.highest} \n **Roles [${me.roles.cache.size}]** : ${me.roles.cache.size < 0 ? [...me.roles.cache.values()].sort((a,b) => b.rawPosition - a.rawPosition).map(r => `<@&${r.id}>`).join(', ') : me.roles.cache.size > 30 ? trimArray(me.roles.cache) : 'NO ROLES'}`
                 },
-                { name: `**Key Permissions**`, value: `\`${me.permissions.toArray().sort((a, b) => a.localeCompare(b)).map(x => x.replace(/_/g, ' ').replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase().replace(/^./, match => match.toUpperCase())).join(', ')}\`` },
                 {
-                    name : `**Misc Information**`,
-                    value : `**Created On** : <t:${Math.round(me.user.createdTimestamp / 1000)}:R> \n **Joined On** : <t:${Math.round(me.joinedTimestamp / 1000)}:R>`
+                    name : `__Key Permissions__`,
+                    value : `${me.permissions.toArray().sort((a,b) => a.localeCompare(b)).map(x => `\`${x}\``).join(', ')}`
+                },
+                {
+                    name : `__Acknowledgement__`,
+                    value : `${keys}`
                 }
             ]).setFooter({text : `Requested By : ${message.author.tag}` , iconURL : message.author.displayAvatarURL({dynamic : true})});
             return message.channel.send({embeds : [emb]});
@@ -92,7 +95,7 @@ module.exports = {
             if(userFlags.includes('ACTIVE_DEVELOPER')) flags += ` ${ACTIVE_DEVELOPER}`;
             if(flags === '') flags = `${client.emoji.cross} Null User Badges`;
 
-            let em = new MessageEmbed().setColor(client.color).setAuthor({name : `${user.username}'s Information` , iconURL : user.displayAvatarURL({dynamic : true})}).addFields([
+            let em = new MessageEmbed().setColor(`#2f3136`).setAuthor({name : `${user.username}'s Information` , iconURL : user.displayAvatarURL({dynamic : true})}).addFields([
                 {
                     name : `__General Information__`,
                     value : `**UserName** : ${user.username} \n **User ID** : ${user.id} \n **Bot?** : ${user.bot ? `${client.emoji.tick}` : `${client.emoji.cross}`} \n **Discord Badges** : ${flags} \n **Account Created** : <t:${Math.round(user.createdTimestamp / 1000)}:R>`
@@ -102,7 +105,7 @@ module.exports = {
             return message.channel.send({embeds : [em]});
         }
         else{
-            return message.channel.send({embeds : [new MessageEmbed().setColor(client.color).setDescription(`${client.emoji.cross} | I was unable to find the user.`)]})
+            return message.channel.send({embeds : [new MessageEmbed().setColor(`#2f3136`).setDescription(`${client.emoji.cross} | I was unable to find the user.`)]})
         }
     }
 }

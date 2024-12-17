@@ -11,7 +11,7 @@ module.exports = {
             client.users.cache.get(args[0]) ||
             message.author
 
-        const destroyer = user.id === '1237086498076098762' ? true : false
+        const destroyer = user.id === '1300534329402982472' ? true : false
         let badges = ''
 
         const guild = await client.guilds.fetch('1177091174859800637')
@@ -21,61 +21,51 @@ module.exports = {
             else badges = '`No Badge Available`'
         })
 
-        if (destroyer === true || user.id === '1237086498076098762')
+        if (destroyer === true || user.id === '1300534329402982472')
             badges =
                 badges +
-                `\n<:jingle:1291442476430921809>・**[mr_harry55](https://discord.com/users/1237086498076098762)**`
+                `\n<:Harm:1291442476430921809>・**[MUGHAL](https://discord.com/users/1300534329402982472)**`
 
         try {
             const dev = sus.roles.cache.has('1291097238336049194')
             if (dev === true)
                 badges =
                     badges +
-                    `\n<a:dev:1291433691037565008>・**Developer**`
+                    `\n<a:developer:1317556000122736761>・**Developer**`
 
             const own = sus.roles.cache.has('1291098211305521195')
             if (own === true)
-                badges = badges + `\n<a:oz:1291416157114339482>・**Owner**`
+                badges = badges + `\n<a:Crown_01_Owner:1318285589153316884>・**Owner**`
 
             const han = sus.roles.cache.has('1291098239524933734')
             if (han === true)
-                badges = badges + `\n<a:admin:1291442363138572318>・**Admin**`
+                badges = badges + `\n<a:head_admin:1318285814496759819> ・**Admin**`
 
             const manager = sus.roles.cache.has('1291098300820361277')
             if (manager === true)
-                badges = badges + `\n<:mog:1291443886203605054>・**Mod**`
+                badges = badges + `\n<:BadgeCertifiedMod:1318285950916366366>・**Mod**`
 
             const aman = sus.roles.cache.has('1291098366037594132')
             if (aman === true)
                 badges =
-                    badges + `\n<a:sup:1291440696355459193>・**Support Team**`
-
-            const np = sus.roles.cache.has('1256892444214034482')
-            if (fr === true)
-                badges =
-                   badges + `\n<:np:1292200370633965620>・**NoPrefix**`
+                    badges + `\n<a:bitzxier_staff:1317555883051585627>・**Support Team**`
 
             const hundi = sus.roles.cache.has('1291098413257199727')
             if (hundi === true)
                 badges =
                     badges +
-                    `\n<:bughunter:1291433689120509952>・**Bug Hunter**`
+                    `\n<:cmds:1317555210968760353>・**Bug Hunter**`
 
             const supp = sus.roles.cache.has('1291098456529571940')
             if (supp === true)
                 badges =
                     badges +
-                    `\n<a:pre:1291441311714643999>・**Premium User**`
+                    `\n<a:diamantee:1318286050241544272>・**Premium User**`
 
             const fr = sus.roles.cache.has('1291098499697606676')
             if (fr === true)
                 badges =
-                    badges + `\n<:friend:1291433693893890068>・**Friends**`
-
-            const me = sus.roles.cache.has('1252532365935513743')
-            if (fr === true)
-                badges =
-                    badges + `\n<:member:1317888648456175737>・**Member**`
+                    badges + `\n<:bhaibhai:1318286138166743121>・**Friends**`
         } catch (err) {
             if (badges) {
                 badges = ''
@@ -92,7 +82,7 @@ module.exports = {
             //.setTitle(`${user.username}'s Profile`)
             .setColor(client.color)
             .setTimestamp()
-            .setDescription(`**BADGES** <a:boost:1317891977316007996>
+            .setDescription(`**BADGES** <a:bz:1291425807004209173>
   ${badges ? badges : '`No Badge Available`'}`)
         //.setTimestamp();
         message.channel.send({ embeds: [pr] })

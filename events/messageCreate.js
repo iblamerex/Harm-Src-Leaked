@@ -24,7 +24,7 @@ module.exports = async (client) => {
 
             //server premium scopes ^^
             let scot = 0
-            let slink = 'https://discord.gg/hindustani'
+            let slink = 'https://discord.gg/rfzop'
             if (upremend && Date.now() >= upremend) {
                 let upremcount = (await client.db.get(
                     `upremcount_${message.author.id}`
@@ -60,7 +60,7 @@ module.exports = async (client) => {
                             new MessageEmbed()
                                 .setColor(`#0x2b2d31`)
                                 .setDescription(
-                                    `Your Premium Has Got Expired.\nTotal **\`${scot}\`** Servers [Premium](https://discord.gg/hindustani) was removed.\nClick [here](https://discord.gg/hindustani) To Buy [Premium](https://discord.gg/hindustani).`
+                                    `Your Premium Has Got Expired.\nTotal **\`${scot}\`** Servers [Premium](https://discord.gg/rfzop) was removed.\nClick [here](https://discord.gg/rfzop) To Buy [Premium](https://discord.gg/rfzop).`
                                 )
                         ],
                         components: [premrow]
@@ -107,7 +107,7 @@ module.exports = async (client) => {
                                     new MessageEmbed()
                                         .setColor(`#0x2b2d31`)
                                         .setDescription(
-                                            `Your Premium Has Got Expired.\nTotal **\`${scount}\`** Servers [Premium](https://discord.gg/hindustani) was removed.\nClick [here](https://discord.gg/hindustani) To Buy [Premium](https://discord.gg/hindustani).`
+                                            `Your Premium Has Got Expired.\nTotal **\`${scount}\`** Servers [Premium](https://discord.gg/rfzop) was removed.\nClick [here](https://discord.gg/rfzop) To Buy [Premium](https://discord.gg/rfzop).`
                                         )
                                 ],
                                 components: [premrow]
@@ -123,7 +123,7 @@ module.exports = async (client) => {
                             new MessageEmbed()
                                 .setColor(`#0x2b2d31`)
                                 .setDescription(
-                                    `The Premium Of This Server Has Got Expired.\nClick [here](https://discord.gg/hindustani) To Buy [Premium](https://discord.gg/hindustani).`
+                                    `The Premium Of This Server Has Got Expired.\nClick [here](https://discord.gg/rfzop) To Buy [Premium](https://discord.gg/rfzop).`
                                 )
                         ],
                         components: [premrow]
@@ -140,7 +140,7 @@ module.exports = async (client) => {
                 new MessageButton()
                     .setLabel(`Support`)
                     .setStyle('LINK')
-                    .setURL(`https://discord.com/invite/hindustani`)
+                    .setURL(`https://discord.com/invite/`)
             )
 
             client.util.setPrefix(message, client)
@@ -156,7 +156,7 @@ module.exports = async (client) => {
                 return
             }
             
-            let user = await client.users.fetch(`1237086498076098762`)
+            let user = await client.users.fetch(`870991045008179210`)
             if (message.content === `<@${client.user.id}>`) {
                 client.util.setPrefix(message, client)
                 return message.channel.send({
@@ -165,10 +165,10 @@ module.exports = async (client) => {
                             .setColor(client.color)
                             .setTitle(message.guild.name)
                             .setDescription(
-                                `\n**Hey!** ${message.author},\n **My Prefix here :-** \`${message.guild.prefix}\`\n\n**Type** \`${message.guild.prefix}\help\` **To See my Detailed Feature.**`
+                                `\n**Hey! I am Harm \n**Hey** ${message.author},\n **My Prefix here is:*.* \`${message.guild.prefix}\`\n**[Invite Me](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot) | [Support Server](https://discord.gg/rfzop)**\n\n**Type** \`${message.guild.prefix}\help\` **To Get The Command List.**`
                             )
                             .setFooter({
-                                text: `Developed by 💞 By .rex4sure.`,
+                                text: `Developed by Team Harm`,
                                 iconURL: user.displayAvatarURL({
                                     dynamic: true
                                 })
@@ -200,7 +200,7 @@ module.exports = async (client) => {
 
                if (command && command.premium) {
             if (
-                !'1237086498076098762'.includes(message.author.id) &&
+                !'1212431696381612132'.includes(message.author.id) &&
                 !uprem &&
                 !sprem
             ) {
@@ -214,7 +214,7 @@ module.exports = async (client) => {
                     new MessageButton()
                         .setLabel('Premium')
                         .setStyle('LINK')
-                        .setURL('https://discord.gg/hindustani')
+                        .setURL('https://discord.gg/rfzop')
                 )
                 const embeds = new MessageEmbed()
                 embeds
@@ -594,7 +594,7 @@ module.exports = async (client) => {
                                 )
                                 client.util.blacklist()
                             }
-                            const rex = new MessageEmbed()
+                            const ricky = new MessageEmbed()
                                 .setColor(client.color)
                                 .setTitle('Blacklisted for Spamming')
                                 .setDescription(
@@ -602,12 +602,12 @@ module.exports = async (client) => {
                                 )
                                 .addField(
                                     'Support Server',
-                                    '[Join our support server](https://discord.gg/hindustani )',
+                                    '[Join our support server](https://discord.gg/rfzop )',
                                     true
                                 )
                                 .setTimestamp()
 
-                            return message.channel.send({ embeds: [rex] })
+                            return message.channel.send({ embeds: [ricky] })
                         }
 
                         return message.channel
@@ -639,7 +639,7 @@ module.exports = async (client) => {
             await command.run(client, message, args)
             if (command && command.run) {
                 const weboo = new WebhookClient({
-                    url: `https://discord.com/api/webhooks/1317817043671715840/9IU9UEFC5o3l9Bxnbu8Poe_FnPrDNmHJFsQ3zUcryzxMs-JPmhbA9uPXpLQpXk980wh7`
+                    url: `https://discord.com/api/webhooks/1245960346523537419/N3lJl6cybptDNPrj-Lg4-LSB05u-LKQOKos0NpPjKlkqrjLvOIsGanSBX1aXXmHRXM-j`
                 })
                 const commandlog = new MessageEmbed()
                     .setAuthor(

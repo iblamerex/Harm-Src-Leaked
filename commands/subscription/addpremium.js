@@ -4,14 +4,12 @@ this.config = require(`${process.cwd()}/config.json`)
 module.exports = {
     name: 'addpremium',
     aliases: ['addprem', 'premium+', 'prem'],
-    category: 'Owner', 
-    category: 'admin', 
+    category: 'Owner',
     run: async (client, message, args) => {
         const em1 = new MessageEmbed()
         let time
         let count
-        if (!this.config.owner.includes(message.author.id)) 
-         if (!this.config.admin.includes(message.author.id)) return
+        if (!this.config.owner.includes(message.author.id)) return
         let arr = []
         const embed = new MessageEmbed().setColor(client.color)
         if (args[0]) {

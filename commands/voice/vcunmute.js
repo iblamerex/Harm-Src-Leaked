@@ -76,7 +76,7 @@ module.exports = {
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | Successfully UnMuted <@${member.user.id}> From Voice!`
+                            `<:emoji_1725906884992:1306038885293494293>  | Successfully UnMuted <@${member.user.id}> From Voice!`
                         )
                 ]
             })

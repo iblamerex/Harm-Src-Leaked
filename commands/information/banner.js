@@ -38,7 +38,7 @@ module.exports = {
                 embeds: [
                     new MessageEmbed()
                         .setColor(client.color)
-                        .setDescription(`You Don't Have A Banner`)
+                        .setDescription(`**You Don't Have A Banner**`)
                 ]
             })
         }

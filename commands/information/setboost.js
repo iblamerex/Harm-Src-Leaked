@@ -12,7 +12,7 @@ module.exports = {
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | You must have \`Administration\` perms to run this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | You must have \`Administration\` perms to run this command.`
                         )
                 ]
             })
@@ -30,7 +30,7 @@ module.exports = {
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | You didn't provided a valid channel.`
+                            `<:emoji_1725906884992:1306038885293494293>  | You didn't provided a valid channel.`
                         )
                 ]
             })
@@ -45,7 +45,7 @@ module.exports = {
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | I didn't have permissions to send messages in <#${channel.id}>.`
+                            `<:emoji_1725906884992:1306038885293494293>  | I didn't have permissions to send messages in <#${channel.id}>.`
                         )
                 ]
             })
@@ -64,8 +64,8 @@ module.exports = {
                     .setColor(client.color)
                     .setDescription(
                         disable
-                            ? `<:tick:1317818894546898985> | I'll not send messages when when someone boosts the server.`
-                            : `<:tick:1317818894546898985> | I'll now send messages to <#${channel.id}> when someone boosts the server.`
+                            ? `<a:Tick:1306038825054896209> | I'll not send messages when when someone boosts the server.`
+                            : `<a:Tick:1306038825054896209> | I'll now send messages to <#${channel.id}> when someone boosts the server.`
                     )
             ]
         })

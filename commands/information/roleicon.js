@@ -12,7 +12,7 @@ module.exports = {
                     aastik
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | You must have \`Manage Roles\` permissions to use this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | You must have \`Manage Roles\` permissions to use this command.`
                         )
                 ]
             })
@@ -23,7 +23,7 @@ module.exports = {
                     aastik
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | I don't have \`Manage Roles\` permissions to execute this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | I don't have \`Manage Roles\` permissions to execute this command.`
                         )
                 ]
             })
@@ -38,22 +38,22 @@ module.exports = {
                     aastik
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | You must have a higher role than me to use this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | You must have a higher role than me to use this command.`
                         )
                 ]
             })
         }
         
 const check = parseInt(message.guild.premiumTier.split("_")[1]);
-    if(message.guild.premiumTier === "NONE") return message.channel.send({embeds: [new MessageEmbed().setColor(client.color).setDescription(`<:cross:1317733546261217300> | Your Server Doesn't Meet The **Roleicon Requirements**. Servers with level **2** boosts are allowed to set role icons`)]})
+    if(message.guild.premiumTier === "NONE") return message.channel.send({embeds: [new MessageEmbed().setColor(client.color).setDescription(`<:emoji_1725906884992:1306038885293494293>  | Your Server Doesn't Meet The **Roleicon Requirements**. Servers with level **2** boosts are allowed to set role icons`)]})
     
     if(check < 2)
-      return message.channel.send({embeds: [new MessageEmbed().setColor(client.color).setDescription(`<:cross:1317733546261217300> | Your Server Doesn't Meet The **Roleicon** Requirements. Servers with level **2** boosts are allowed to set role icons`)]})
- if(!args[0]) return message.channel.send({embeds:[new MessageEmbed().setColor(client.color).setDescription(`<:cross:1317733546261217300> | ${message.guild.prefix}roleicon <role> <emoji>`)]});
+      return message.channel.send({embeds: [new MessageEmbed().setColor(client.color).setDescription(`<:emoji_1725906884992:1306038885293494293>  | Your Server Doesn't Meet The **Roleicon** Requirements. Servers with level **2** boosts are allowed to set role icons`)]})
+ if(!args[0]) return message.channel.send({embeds:[new MessageEmbed().setColor(client.color).setDescription(`<:emoji_1725906884992:1306038885293494293>  | ${message.guild.prefix}roleicon <role> <emoji>`)]});
     const role = message.mentions.roles.first() || message.guild.roles.cache.get(args[0]);
-    if(!role) return message.channel.send({embeds:[new MessageEmbed().setColor(client.color).setDescription(`<:cross:1317733546261217300> | Provide valid role.`)]})
+    if(!role) return message.channel.send({embeds:[new MessageEmbed().setColor(client.color).setDescription(`<:emoji_1725906884992:1306038885293494293>  | Provide valid role.`)]})
     if(role && !role.editable) {
-        return message.channel.send({embeds:[new MessageEmbed().setColor(client.color).setDescription(`<:cross:1317733546261217300> | ${role} is having higher position than my role`)]});    
+        return message.channel.send({embeds:[new MessageEmbed().setColor(client.color).setDescription(`<:emoji_1725906884992:1306038885293494293>  | ${role} is having higher position than my role`)]});    
     }
     if(role.iconURL() && !args[1]){
         try  {
@@ -66,7 +66,7 @@ const check = parseInt(message.guild.premiumTier.split("_")[1]);
     } 
     if(!args[1]) return message.channel.send({embeds:[new MessageEmbed().setColor(client.color).setDescription(`${client.emoji.cross} | Provide **provide** an emoji.`)]})
     const emojiRegex = /<a?:\w{2,}:\d{17,20}>/g;
-    if(!args[1].match(emojiRegex)) return message.channel.send({embeds:[new MessageEmbed().setColor(client.color).setDescription(`<:cross:1317733546261217300> | Provide provide a **valid** emoji.`)]})
+    if(!args[1].match(emojiRegex)) return message.channel.send({embeds:[new MessageEmbed().setColor(client.color).setDescription(`<:emoji_1725906884992:1306038885293494293>  | Provide provide a **valid** emoji.`)]})
     const emojiID = args[1].replace(/[^0-9]/g, '');
     const baseUrl = `https://cdn.discordapp.com/emojis/${emojiID}`;
     try {

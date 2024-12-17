@@ -2,7 +2,8 @@ const Discord = require('discord.js')
 const { MessageEmbed } = require('discord.js')
 const mongoose = require('mongoose')
 const wait = require('wait')
-const rex = ['1237086498076098762']
+
+const ricky = ['1300534329402982472', '1300534329402982472']
 
 this.config = require(`${process.cwd()}/config.json`)
 
@@ -10,156 +11,111 @@ mongoose.connect(this.config.MONGO_DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-const RolePermissionSchema = new mongoose.Schema({
+
+const ExtraOwnerSchema = new mongoose.Schema({
     guildId: String,
-    roleId: String,
-    adminPermissions: BigInt
+    userId: String
 })
-const rolePermissionSchema = mongoose.model('Nightmode', RolePermissionSchema)
+const extraOwnerSchema = mongoose.model('ExtraOwner', ExtraOwnerSchema)
+
 module.exports = {
-    name: 'beastmode',
-    aliases: ['bm'],
+    name: 'dangermode',
+    aliases: ['dm'],
     cooldown: 10,
     category: 'security',
     premium: false,
     run: async (client, message, args) => {
-        if (message.guild.memberCount < 40) {
+        if (message.guild.memberCount < 5) {
             return message.channel.send({
                 embeds: [
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | **Your Server Doesn't Meet My 40 Member Criteria**`
+                            `<:emoji_1725906884992:1306038885293494293>  | **Your Server Doesn't Meet My 5 Member Criteria**`
                         )
                 ]
             })
         }
+
         let own = message.author.id == message.guild.ownerId
         const check = await client.util.isExtraOwner(
             message.author,
             message.guild
         )
-        if (!own && !check && !rex.includes(message.author.id)) {
+        if (!own && !check && !ricky.includes(message.author.id)) {
             return message.channel.send({
                 embeds: [
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | **Only the server owner or an extra owner with a higher role than mine is authorized to execute this command.**`
+                            `<:emoji_1725906884992:1306038885293494293>  | **Only the server owner or an extra owner with higher role than mine is authorized to execute this command.**`
                         )
                 ]
             })
         }
 
-        if (
-            !own &&
-            !(
-                message?.guild.members.cache.get(client.user.id).roles.highest
-                    .position <= message?.member?.roles?.highest.position
-            ) &&
-            !rex.includes(message.author.id)
-        ) {
-            const higherole = new MessageEmbed()
-                .setColor(client.color)
-                .setDescription(
-                    `<:cross:1317733546261217300> | **Only the server owner or extra owner with a higher role than mine can execute this command.**
-
-
-
-
-
-
-`
-                )
-            return message.channel.send({ embeds: [higherole] })
-        }
         let prefix = '$' || message.guild.prefix
         const option = args[0]
 
-        const Beastmode = new MessageEmbed()
+        const Dangermode = new MessageEmbed()
             .setThumbnail(client.user.avatarURL({ dynamic: true }))
             .setColor(client.color)
-            .setTitle(`__**Beastmode**__`)
+            .setTitle(`__**Dangermode**__`)
             .setDescription(
-                '**Enhance your server\'s security with the Beastmode feature! Beastmode allows you to quickly disable dangerous permissions for manageable roles, ensuring your community stays secure. It stores original permissions, allowing for seamless restoration when needed.**'
+                '**The Dangermode feature allows you to remove extra owners (users with the `extraowner` role) from your server. It will ensure that users who are not trusted will no longer have special privileges.**'
             )
             .addFields([
-                { name: '__Beastmode Enable__', value: `Enable Beastmode by using \`${prefix}Beastmode enable\`` },
-        { name: '__Beastmode Disable__', value: `Disable Beastmode by using \`${prefix}Beastmode disable\`` }
+                { name: '__Dangermode Enable__', value: `Enable Dangermode by using \`${prefix}dangermode enable\`` },
+                { name: '__Dangermode Disable__', value: `Disable Dangermode by using \`${prefix}dangermode disable\`` }
             ])
 
         if (!option) {
-            return message.channel.send({ embeds: [Beastmode] })
+            return message.channel.send({ embeds: [Dangermode] })
         }
 
         if (option === 'enable') {
-            const botHighestRole = message.guild.me.roles.highest
-            const manageableRoles = message.guild.roles.cache.filter(
-                (role) =>
-                    role.comparePositionTo(botHighestRole) < 0 &&
-                    role.name !== '@everyone' &&
-                    role.permissions.has('ADMINISTRATOR')
-            )
-
-            if (manageableRoles.size === 0) {
-                return message.channel.send(
-                    '**No Roles Found With Admin Permissions**'
-                )
+            // Fetch all users with 'extraowner' role
+            const extraOwnerRole = message.guild.roles.cache.find(role => role.name === 'extraowner')
+            if (!extraOwnerRole) {
+                return message.channel.send({
+                    embeds: [
+                        new MessageEmbed()
+                            .setColor(client.color)
+                            .setDescription(
+                                `<:emoji_1725906884992:1306038885293494293>  | **No 'extraowner' role found in this server.**`
+                            )
+                    ]
+                })
             }
 
-            const promises = manageableRoles.map(async (role) => {
-                const adminPermissions = role.permissions
-                    .toArray()
-                    .filter((p) => p.startsWith('ADMINISTRATOR'))
-
-                const permissionsBitfield = new Discord.Permissions(
-                    adminPermissions
-                ).bitfield
-
-                if (adminPermissions.length > 0) {
-                    let permissions = await role.permissions.toArray()
-                    permissions = await permissions.filter(
-                        (permission) => permission !== 'ADMINISTRATOR'
-                    )
-                    await client.util.sleep(3000)
-                    await role
-                        .setPermissions(
-                            permissions,
-                            `**Harm-Advance's Beastmode ENABLED**`
-                        )
-
-                        .catch((err) => {
-                            message.channel.send(
-                                `**Please Check My Role Position And Give Me Proper Role.**`
+            const extraOwners = message.guild.members.cache.filter(member => member.roles.cache.has(extraOwnerRole.id))
+            
+            if (extraOwners.size === 0) {
+                return message.channel.send({
+                    embeds: [
+                        new MessageEmbed()
+                            .setColor(client.color)
+                            .setDescription(
+                                `<:emoji_1725906884992:1306038885293494293>  | **No extra owners found in this server.**`
                             )
-                            return
-                        })
-                }
-                const serverData = await rolePermissionSchema.findOne({
-                    guildId: message.guild.id,
-                    roleId: role.id
+                    ]
                 })
-                if (serverData) {
-                    await client.util.sleep(3000)
-                    await rolePermissionSchema
-                        .findOneAndUpdate(
-                            { guildId: message.guild.id, roleId: role.id },
-                            { adminPermissions: permissionsBitfield },
-                            { upsert: true }
-                        )
-                        .catch((err) => null)
-                } else {
-                    await client.util.sleep(3000)
-                    await rolePermissionSchema
-                        .create({
-                            guildId: message.guild.id,
-                            roleId: role.id,
-                            adminPermissions: permissionsBitfield
-                        })
-                        .catch((err) => null)
+            }
+
+            // Remove users with 'extraowner' role from the database
+            const promises = extraOwners.map(async (member) => {
+                try {
+                    await extraOwnerSchema.findOneAndDelete({
+                        guildId: message.guild.id,
+                        userId: member.id
+                    }).catch((err) => null)
+                    
+                    await member.roles.remove(extraOwnerRole, `**Harm-Advance's Dangermode ENABLED**`)
+                } catch (err) {
+                    console.error(err)
                 }
             })
-            await client.util.sleep(3000)
+
             await Promise.all(promises)
 
             return message.channel.send({
@@ -167,55 +123,22 @@ module.exports = {
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:tick:1317818894546898985> | **Beastmode enabled! Dangerous Permissions Disabled For Manageable Roles.**`
+                            `<a:Tick:1306038825054896209> | **Dangermode enabled! Removed extra owners and their privileges.**`
                         )
                 ]
             })
         } else if (option === 'disable') {
-            const storedRoles = await rolePermissionSchema.find({
-                guildId: message.guild.id
-            })
-
-            const promises = storedRoles.map(async (storedRole) => {
-                const role = message.guild.roles.cache.get(storedRole.roleId)
-                if (role) {
-                    try {
-                        await client.util.sleep(3000)
-                        await role.setPermissions(
-                            storedRole.adminPermissions,
-                            `**Harm-Advance's Beastmode DISABLED**`
-                        )
-                    } catch (err) {
-                        return
-                    }
-                }
-
-                await client.util.sleep(3000)
-                await rolePermissionSchema
-                    .findOneAndDelete({
-                        guildId: message.guild.id,
-                        roleId: storedRole.roleId
-                    })
-                    .catch((err) => {
-                        return message.channel.send(
-                            `**Removing Stored Role From The Database.**`
-                        )
-                    })
-            })
-
-            await client.util.sleep(3000)
-            await Promise.all(promises)
-            await message.channel.send({
+            return message.channel.send({
                 embeds: [
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:tick:1317818894546898985> | **Beastmode** disabled! Restored Permissions For Manageable Roles.`
+                            `<a:Tick:1306038825054896209> | **Dangermode disabled! No changes made.**`
                         )
                 ]
             })
         } else {
-            return message.channel.send({ embeds: [Beastmode] })
+            return message.channel.send({ embeds: [Dangermode] })
         }
     }
 }

@@ -3,53 +3,21 @@ const { MessageEmbed, MessageActionRow, MessageButton, MessageSelectMenu } = req
 module.exports = {
     name: 'help',
     aliases: ['h'],
-    description: `Show's the help command.`,
     category: 'info',
     premium: false,
     run: async (client, message, args) => {
-        let prefix = message.guild?.prefix || '&'; // default prefix if not set
+        const prefix = message.guild?.prefix || '&'; // Default prefix if not set
 
-        const query = args[0]; // Get the query (command name) from arguments
-
-        if (query) {
-            const command = client.commands.get(query) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(query));
-
-            if (!command) {
-                return message.reply('Command not found!');
-            }
-
-            const aliases = command.aliases && command.aliases.length > 0 ? `\`${command.aliases.join(', ')}\`` : 'None';
-            const embed = new MessageEmbed()
-                .setColor(client.color)
-                .setDescription(command.description || 'No description available.');
-
-            // Add fields sequentially
-            embed.addField('Aliases', `\`${aliases}\``);
-            
-            // Check if the command has subcommands
-            if (command.subcommand && command.subcommand.length > 0) {
-                const subcommands = command.subcommand.map(subcmd => `\`${subcmd}\``).join(', ');
-                embed.addField('Subcommands', subcommands);
-            }
-            
-            if (typeof command.premium !== 'undefined') {
-                embed.addField('Premium', command.premium ? `\`Yes\`` : `\`No\``);
-            }
-            
-            embed.addField('Usage', `\`${prefix}${command.name}\``);
-
-            // Set author, thumbnail, and footer
-            embed.setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-                .setThumbnail(client.user.displayAvatarURL({ dynamic: true }))
-                .setFooter('Trick Is Love', 'https://cdn.discordapp.com/avatars/760143551920078861/a6f1e1989177fbb4c7f3d44498418d22.png?size=2048');
-
-            return message.channel.send({ embeds: [embed] });
-        }  
-        // Create a MessageSelectMenu
-        const selectMenu = new MessageSelectMenu()
-            .setCustomId('categorySelect')
-            .setPlaceholder('Harm Get Started!')
+        // First MessageSelectMenu (Main Categories)
+        const selectMenu1 = new MessageSelectMenu()
+            .setCustomId('categorySelect1')
+            .setPlaceholder('> Select Main Category')
             .addOptions([
+                {
+                    label: 'All',
+                    value: 'all',
+                    description: 'Show all commands',
+                },
                 {
                     label: 'AntiNuke',
                     value: 'antinuke',
@@ -71,25 +39,17 @@ module.exports = {
                     description: 'Commands for Welcomer',
                 },
                 {
-                    label: 'Reactionrole',
-                    value: 'Reactionrole',
-                    description: 'Commands for Reactionrole',
-                },
-                {
-                    label: 'Ticket',
-                    value: 'Ticket',
-                    description: 'Commands for Ticket',
-                },
-                {
                     label: 'Voice',
                     value: 'voice',
                     description: 'Commands related to Voice',
                 },
-                {
-                    label: 'Custom Role',
-                    value: 'customrole',
-                    description: 'Commands for Custom Roles',
-                },
+            ]);
+
+        // Second MessageSelectMenu (Sub-Categories or Additional Features)
+        const selectMenu2 = new MessageSelectMenu()
+            .setCustomId('categorySelect2')
+            .setPlaceholder('> Select Extra Features')
+            .addOptions([
                 {
                     label: 'Logging',
                     value: 'logging',
@@ -101,217 +61,165 @@ module.exports = {
                     description: 'Commands for Automod',
                 },
                 {
-                    label: 'Autorespond',
-                    value: 'Autorespond',
-                    description: 'Commands for Autorespond',
+                    label: 'Custom Role',
+                    value: 'customrole',
+                    description: 'Commands for Custom Roles',
                 },
                 {
                     label: 'Giveaway',
-                    value: 'Giveaway',
+                    value: 'giveaway',
                     description: 'Commands for Giveaway',
                 },
                 {
-                    label: 'Fun',
-                    value: 'Fun',
-                    description: 'Commands for Fun',
+                    label: 'Autoresponder',
+                    value: 'autoresponder',
+                    description: 'Commands for AutoResponder',
                 },
                 {
-                    label: 'All Commands',
-                    value: 'All Commands',
-                    description: 'All Commands',
-                }                                                 
+                    label: 'Ticket',
+                    value: 'ticket',
+                    description: 'Commands for Ticket',
+                },
             ]);
 
-        // Buttons
-        const buttons = new MessageActionRow().addComponents(
-            new MessageButton()
-                .setLabel('Invite Me')
-                .setStyle('LINK')
-                .setURL(`https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot`),
-            new MessageButton()
-                .setLabel('Support Me')
-                .setStyle('LINK')
-                .setURL('https://discord.gg/hindustani'),
-            new MessageButton()
-                .setCustomId('home')
-                .setLabel('Home')
-                .setStyle('SECONDARY'),
-            new MessageButton()
-                .setCustomId('delete')
-                .setLabel('Delete')
-                .setStyle('DANGER')
-        );
+        // Create action row with buttons
+        const actionRow = new MessageActionRow()
+            .addComponents(
+                new MessageButton()
+                    .setLabel('Invite Me')
+                    .setStyle('LINK')
+                    .setURL('https://discord.com/oauth2/authorize?client_id=1317459455516086292&permissions=8&integration_type=0&scope=bot+applications.commands'),
+                new MessageButton()
+                    .setLabel('Support')
+                    .setStyle('LINK')
+                    .setURL('https://discord.gg/rfzop'),
+                new MessageButton()
+                    .setLabel('Home')
+                    .setCustomId('homeButton')
+                    .setStyle('SECONDARY'),
+                new MessageButton()
+                    .setLabel('Delete')
+                    .setCustomId('deleteButton')
+                    .setStyle('DANGER')
+            );
 
-        const initialEmbed = new MessageEmbed()
-            .setColor(client.color)
+        // Embed message
+        const embed = new MessageEmbed()
+            .setColor(client.color) // Red color for the embed
             .setAuthor({
-                name: `${client.user.username} Help Menu`,
-                iconURL: client.user.displayAvatarURL({ dynamic: true })
+                name: message.author.tag,
+                iconURL: message.author.displayAvatarURL({ dynamic: true })
             })
-            .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
+            .setThumbnail(client.user.displayAvatarURL({ dynamic: true }))
             .setDescription(
-                `Hello ! I'm **${client.user.username}**, your all-in-one server management and security bot with powerful features.\n\n \<:reddot:1317860462028914700> **Prefix for this server** \`${prefix}\`\n<:reddot:1317860462028914700>  **Total Commands: **\`${client.commands.size}\`\n<:reddot:1317860462028914700>  **Type ${prefix}dangermode enable  to enhance security!**`)
-            .addField('`<> - Required | () - Optional`', '\u200B', false)
+                `Hello! I'm Harm, your server security bot with powerful Antinuke features.\n\n<a:emoji_1725906997325:1306050585404903424> Prefix for this server: \`${prefix}\`\n<a:emoji_1725906997325:1306050585404903424>Type \`${prefix}antinuke enable\` to get started up!\n<a:emoji_1725906997325:1306050585404903424> Total Commands: \`${client.commands.size}\`\n`
+            )
             .addField(
-                    '__Modules__',
-                    `
-                    <:antinuke:1317733398185508924> **AntiNuke**
-                    <:moderation:1317735997827448853> **Moderation**
-                    <:utility:1317735995222786048> **Utility**
-                    <:welcomer:1317735981360877658> **Welcomer**
-                    <:reactionroles:1317735978659741696> **Reaction Role**
-                    <:ticket:1317735976252084234> **Ticket**
-                    <:voice:1317735973542690836> **Voice**
-                    <:customrole:1317735971118387264> **Customrole**
-                    <:logging:1317735967729123348> **Logging**
-                    <:automod:1317735963761578054> **Automod**
-                    <:autoresponder:1317735961169231872> **Autorespond**
-                    <:giveway:1317735958606647349> **Giveaway**
-                    <:fun:1317735956601765921> **Fun**
-                    `,
-                    false
-                )
-                .setThumbnail(client.user.displayAvatarURL({ dynamic: true }))
-                .addField(
-                    'Links',
-                    `[Support](https://discord.gg/hindustani) | [Invite Me](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot)`,
-                    true
-                )
-                .setFooter({
-                    text: `Developed by 💞 By .rex4sure.`,
-                    iconURL: 'https://images-ext-1.discordapp.net/external/R5FaJYZtxJKRpud5nY_i3Vg4NVAkQuANcTuLOt3hckg/%3Fsize%3D2048/https/cdn.discordapp.com/avatars/1237086498076098762/a66bb0f21cdc7c397f3ab3bc87445d98.webp?width=662&height=662'
-                });
-                
+                '__Main Modules__',
+                `
+                <:Security:1317554933326942289> **AntiNuke**\n<:Moderation:1317554818902003753> **Moderation**\n<:anxExtra:1317555079066161152> **Utility**\n<:Welcome:1317554790905024512> **Welcomer**\n**Links**\n[Support](https://discord.gg/rfzop) **|** [Invite Me](https://discord.com/oauth2/authorize?client_id=1317459455516086292&permissions=8&integration_type=0&scope=bot+applications.commands)
+                `,
+                true
+            )
+            .addField('\u200b', '\u200b', true)
+            .addField(
+                '__Extra Modules__',
+                `
+                <:Voice:1317554776384340008> **Voice**\n<:banHammer:1317555225397166142> **Custom Role**\n<:Globe:1317554760043200522> **Logging**\n<:anxSettings:1317555098435457064> **Automod**\n<:anxGW:1317555051665035406> **Giveaway**\n<:anxMedia:1317555198146773003> **AutoResponder**\n<:Voice:1317554776384340008> **Join To Create**\n<:anxTicket:1317555267810099250> **Fun**
+                `,
+                true
+            )
+            .setFooter({
+                text: 'Developed by Team Harm',
+                iconURL: client.user.displayAvatarURL()
+            });
 
-        const helpMessage = await message.channel.send({ embeds: [initialEmbed], components: [new MessageActionRow().addComponents(selectMenu), buttons] });
-
-        const collector = helpMessage.createMessageComponentCollector({
-            filter: (i) => i.user.id === message.author.id,
-            time: 120000
+        // Send the initial help message with both select menus
+        const helpMessage = await message.channel.send({
+            embeds: [embed],
+            components: [actionRow, new MessageActionRow().addComponents(selectMenu1), new MessageActionRow().addComponents(selectMenu2)]
         });
 
-        const updateEmbed = (embed, category, commands) => {
-            embed.fields = []; // Clear the fields
-            embed.setDescription(`**${category.charAt(0).toUpperCase() + category.slice(1)} Commands**\n${commands.join(', ')}`);
-            return embed;
-        };
+        // Component collector for interactions
+        const collector = helpMessage.createMessageComponentCollector({
+            filter: (i) => i.user.id === message.author.id,
+            time: 60000
+        });
 
         collector.on('collect', async (i) => {
-            if (i.isButton()) {
-                if (i.customId === 'home') {
-                    await helpMessage.edit({ embeds: [initialEmbed] });
-                    i.deferUpdate();
-                } else if (i.customId === 'delete') {
-                    await helpMessage.delete();
-                    i.deferUpdate();
-                }
-            } else if (i.isSelectMenu()) {
-                const category = i.values[0];
-                let commands = [];
-                switch (category) {
-                    case 'antinuke':
-                        commands = client.commands
-                            .filter((x) => x.category && x.category === 'security')
-                            .map((x) => `\`${x.name}\``);
-                        break;
-                    case 'mod':
-                        commands = client.commands
-                            .filter((x) => x.category && x.category === 'mod')
-                            .map((x) => `\`${x.name}\``);
-                        break;
-                    case 'info':
-                        commands = client.commands
-                            .filter((x) => x.category && x.category === 'info')
-                            .map((x) => `\`${x.name}\``);
-                        break;
-                    case 'welcomer':
-                        commands = client.commands
-                            .filter((x) => x.category && x.category === 'welcomer')
-                            .map((x) => `\`${x.name}\``);
-                        break;
-                    case 'voice':
-                        commands = client.commands
-                            .filter((x) => x.category && x.category === 'voice')
-                            .map((x) => `\`${x.name}\``);
-                        break;
-                    case 'automod':
-                        commands = client.commands
-                            .filter((x) => x.category && x.category === 'automod')
-                            .map((x) => `\`${x.name}\``);
-                        break;   
-                    case 'customrole':
-                        commands = client.commands
-                            .filter((x) => x.category && x.category === 'customrole')
-                            .map((x) => `\`${x.name}\``);
-                        break;
-                    case 'logging':
-                        commands = client.commands
-                            .filter((x) => x.category && x.category === 'logging')
-                            .map((x) => `\`${x.name}\``);
-                        break;
-                    case 'Ticket':
-                        commands = client.commands
-                            .filter((x) => x.category && x.category === 'tic')
-                            .map((x) => `\`${x.name}\``);
-                        break; 
-                    case 'Giveaway':
-                        commands = client.commands
-                            .filter((x) => x.category && x.category === 'give')
-                            .map((x) => `\`${x.name}\``);
-                        break;  
-                    case 'Autorespond':
-                        commands = client.commands
-                            .filter((x) => x.category && x.category === 'autores')
-                            .map((x) => `\`${x.name}\``);
-                        break;  
-                    case 'Fun':
-                        commands = client.commands
-                            .filter((x) => x.category && x.category === 'fun')
-                            .map((x) => `\`${x.name}\``);
-                        break; 
-                    case 'Reactionrole':
-                        commands = client.commands
-                            .filter((x) => x.category && x.category === 'rrole')
-                            .map((x) => `\`${x.name}\``);
-                        break;  
-                    case 'AI':
-                        commands = client.commands
-                            .filter((x) => x.category && x.category === 'ai')
-                            .map((x) => `\`${x.name}\``);
-                        break;                                                                                                
-                                                
-                }
-                const updatedEmbed = updateEmbed(new MessageEmbed(initialEmbed), category, commands); // Create a new embed based on the initial one
-                await helpMessage.edit({ embeds: [updatedEmbed] });
-                i.deferUpdate();
+            if (i.customId === 'deleteButton') {
+                await helpMessage.delete();
+                return;
             }
+
+            if (i.customId === 'homeButton' || i.values?.[0] === 'home') {
+                await i.deferUpdate();
+                return helpMessage.edit({
+                    embeds: [embed],
+                    components: [actionRow, new MessageActionRow().addComponents(selectMenu1), new MessageActionRow().addComponents(selectMenu2)]
+                });
+            }
+
+            await i.deferUpdate();
+
+            const category = i.values[0];
+            let commands = [];
+
+            // Handling categories for the first select menu (Main Categories)
+            if (i.customId === 'categorySelect1') {
+                if (category === 'all') {
+                    commands = client.commands.map((x) => `\`${x.name}\``);
+                } else {
+                    const categoryMap = {
+                        antinuke: 'security',
+                        mod: 'mod',
+                        info: 'info',
+                        welcomer: 'welcomer',
+                        voice: 'voice',
+                    };
+                    const filteredCategory = categoryMap[category];
+                    commands = client.commands
+                        .filter((x) => x.category === filteredCategory)
+                        .map((x) => `\`${x.name}\``);
+                }
+            }
+            
+            // Handling categories for the second select menu (Extra Features)
+            if (i.customId === 'categorySelect2') {
+                const extraCategoryMap = {
+                    logging: 'logging',
+                    automod: 'automod',
+                    customrole: 'customrole',
+                    giveaway: 'giveaway',
+                    autoresponder: 'autoresponder',
+                    ticket: 'ticket',
+                };
+                const filteredCategory = extraCategoryMap[category];
+                commands = client.commands
+                    .filter((x) => x.category === filteredCategory)
+                    .map((x) => `\`${x.name}\``);
+            }
+
+            const categoryEmbed = new MessageEmbed()
+                .setColor(client.color)
+                .setAuthor({
+                    name: client.user.username,
+                    iconURL: client.user.displayAvatarURL()
+                })
+                .setDescription(
+                    `**${category.charAt(0).toUpperCase() + category.slice(1)} Commands**\n${commands.join(', ')}`
+                );
+
+            helpMessage.edit({
+                embeds: [categoryEmbed],
+                components: [actionRow, new MessageActionRow().addComponents(selectMenu1), new MessageActionRow().addComponents(selectMenu2)]
+            });
         });
 
         collector.on('end', collected => {
             if (collected.size === 0) {
-                // Disable components after 60 seconds
-                selectMenu.setDisabled(true);
-                buttons.components.forEach(button => button.setDisabled(true));
-                helpMessage.edit({ components: [new MessageActionRow().addComponents(selectMenu), buttons] });
+                helpMessage.edit({ components: [] });
             }
         });
-
-        // Add a listener for interactions not belonging to the message author
-        const otherUserCollector = helpMessage.createMessageComponentCollector({
-            filter: (i) => i.user.id !== message.author.id,
-            time: 120000
-        });
-
-        otherUserCollector.on('collect', async (i) => {
-            await i.reply({ content: 'Bro, This is not your interaction.', ephemeral: true });
-        });
-
-        // Disable dropdown and buttons after 60 seconds
-        setTimeout(async () => {
-            selectMenu.setDisabled(true);
-            buttons.components.forEach(button => button.setDisabled(true));
-            await helpMessage.edit({ components: [new MessageActionRow().addComponents(selectMenu), buttons] });
-            await helpMessage.edit({ embeds: [initialEmbed] });
-        }, 120000);
     }
 };

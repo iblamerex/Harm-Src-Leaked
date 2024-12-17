@@ -5,6 +5,7 @@ this.config = require(`${process.cwd()}/config.json`)
 module.exports = {
     name: 'updatepremium',
     aliases: ['updateprem', 'upremium'],
+    category: 'Owner',
     run: async (client, message, args) => {
         const em1 = new MessageEmbed()
         let time

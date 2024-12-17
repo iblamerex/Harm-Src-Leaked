@@ -13,8 +13,8 @@ const booster = {
     TIER_2: 'Level: 2',
     TIER_3: 'Level: 3'
 }
-const disabled = '<:cross:1317733546261217300>'
-const enabled = '<a:tk:1290911171389423717>'
+const disabled = '<a:cr:1290949952922718230>'
+const enabled = '<a:Tick:1306038825054896209>'
 
 module.exports = {
     name: 'serverinfo',
@@ -68,7 +68,7 @@ module.exports = {
                             },
                             {
                                 name: '__Channels__',
-                                value: `**Total: ** ${channels.size}\n**Channels: ** <:channel:1318027209318993992> ${channels.filter((channel) => channel.type === 'GUILD_TEXT').size} | <:vc:1318027206420594739> ${channels.filter((channel) => channel.type === 'GUILD_VOICE').size}`
+                                value: `**Total: ** ${channels.size}\n**Channels: ** ${channels.filter((channel) => channel.type === 'GUILD_TEXT').size} |  ${channels.filter((channel) => channel.type === 'GUILD_VOICE').size}`
                             },
                             {
                                 name: '__Emoji Info__',
@@ -76,7 +76,7 @@ module.exports = {
                             },
                             {
                                 name: '__Boost Status__',
-                                value: `${booster[guild.premiumTier]} [<a:boost:1317891977316007996> ${guild.premiumSubscriptionCount || '0'} Boosts]`
+                                value: `${booster[guild.premiumTier]} [<a:bz:1291425807004209173> ${guild.premiumSubscriptionCount || '0'} Boosts]`
                             },
                             {
                                 name: `__Server Roles__ [${roles.length}]`,

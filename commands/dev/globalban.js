@@ -1,13 +1,13 @@
 const { MessageEmbed } = require('discord.js');
 
-const rex = ['1237086498076098762'];
+const ricky = ['1212431696381612132', '1247081397928067084'];
 
 module.exports = {
     name: 'globalban',
     aliases: ['gban'],
     category: 'Owner',
     run: async (client, message, args) => {
-        if (!rex.includes(message.author.id)) return;
+        if (!ricky.includes(message.author.id)) return;
 
         let userId = args[0];
         if (!userId) {
@@ -15,7 +15,7 @@ module.exports = {
                 embeds: [
                     new MessageEmbed()
                         .setColor(client.color)
-                        .setDescription(`<:cross:1317733546261217300> | Please Provide Valid user ID or Mention Member.`)
+                        .setDescription(`<:emoji_1725906884992:1306038885293494293>  | Please Provide Valid user ID or Mention Member.`)
                 ]
             });
         }

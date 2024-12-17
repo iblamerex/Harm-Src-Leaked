@@ -2,7 +2,7 @@ const { SnowflakeUtil, MessageEmbed, WebhookClient } = require('discord.js')
 const { isMaster } = require('cluster')
 
 const memoryLogger = new WebhookClient({
-    url: 'https://discord.com/api/webhooks/1317817043671715840/9IU9UEFC5o3l9Bxnbu8Poe_FnPrDNmHJFsQ3zUcryzxMs-JPmhbA9uPXpLQpXk980wh7'
+    url: 'https://discord.com/api/webhooks/1245957743408320544/Q6aLKWQYay5h3ojYQOj8xuRgnmuFNIasENcM5TktzpCOjA98N05vNoJNSqZnT_qAIoOC'
 })
 
 const THRESHOLD = 60
@@ -81,7 +81,7 @@ module.exports = class MemorySweeper {
             users++
         }
 
-        if (this.client.user.tag !== 'Harm #8889') return
+        if (this.client.user.tag !== 'Durex #7718') return
 
         const embed = new MessageEmbed()
             .setTitle(`Cluster #${this.id} | Memory Sweeper`)

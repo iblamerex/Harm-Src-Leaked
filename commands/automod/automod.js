@@ -1,8 +1,8 @@
 const { MessageEmbed } = require('discord.js')
-let enable = `<:disable:1318037005493342280><:enable:1318037008500658248>`
-let disable = `<:enable:1318037008500658248><:disable:1318037005493342280>`
-let protect = `<:mod:1318037003086073886>`
-let hii = `<:Hii:1220745498621771776>`
+let enable = `<:emoji_1725906884992:1306038885293494293><a:Tick:1306038825054896209>`
+let disable = `<a:Tick:1306038825054896209><:emoji_1725906884992:1306038885293494293>`
+let protect = `<:mod:1290920326313672766>`
+let hii = `<:Bl_dot:1291391196270428232>`
 const wait = require('wait')
 
 module.exports = {
@@ -15,13 +15,13 @@ module.exports = {
     run: async (client, message, args) => {
         const embed = new MessageEmbed().setColor(client.color)
 
-     if (message.guild.memberCount < 40) {
+     if (message.guild.memberCount < 0) {
             return message.channel.send({
                 embeds: [
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `${client.emoji.cross} | Your Server Doesn't Meet My 40 Member Criteria`
+                            `<:emoji_1725906884992:1306038885293494293>  | Your Server Doesn't Meet My 30 Member Criteria`
                         )
                 ]
             })
@@ -33,7 +33,7 @@ module.exports = {
                     embed
                         .setColor(client.color)
                         .setDescription(
-                            `${client.emoji.cross} | You must have \`Administrator\` permissions to use this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | You must have \`Administrator\` permissions to use this command.`
                         )
                 ]
             })
@@ -44,7 +44,7 @@ module.exports = {
                     embed
                         .setColor(client.color)
                         .setDescription(
-                            `${client.emoji.cross} | I don't have \`Administrator\` permissions to execute this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | I don't have \`Administrator\` permissions to execute this command.`
                         )
                 ]
             })
@@ -59,17 +59,17 @@ module.exports = {
                     embed
                         .setColor(client.color)
                         .setDescription(
-                            `${client.emoji.cross} | You must have a higher role than me to use this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | You must have a higher role than me to use this command.`
                         )
                 ]
             })
         }
 
-        let prefix = message.guild.prefix || '&' // Correct way to define default prefix
+        let prefix = message.guild.prefix || '$' // Correct way to define default prefix
 
         const option = args[0]
 
-        const rex = new MessageEmbed()
+        const ricky = new MessageEmbed()
             .setColor(client.color)
             .setAuthor({
                 name: message.author.tag,
@@ -78,62 +78,47 @@ module.exports = {
             .setThumbnail(message.guild.iconURL({ dynamic: true }))
             .addFields([
                 {
-                    name: `\`Autmod\``,
-                    value: `**Shows the current page.**`
+                    name: '` Automod bypass role add/remove <role>`',
+                    value: '\u00A0'
                 },
                 {
-                    name: `\`Automod bypass role add <role>\``,
-                    value: `**Adds the provided role to Automod Bypass Configuration.**`
+                    name: '` Automod bypass role list`',
+                    value: '\u00A0'
                 },
                 {
-                    name: `\`Automod bypass role remove <role>\``,
-                    value: `**Remove the provided role to Automod Bypass Configuration.**`
+                    name: '` Automod bypass role reset`',
+                    value: '\u00A0'
                 },
                 {
-                    name: `\`Automod bypass role list\``,
-                    value: `**Shows the Automod role Bypass list.**`
+                    name: '` Automod bypass user add/remove <user>`',
+                    value: '\u00A0'
                 },
                 {
-                    name: `\`Automod bypass role reset\``,
-                    value: `**Reset the Automod Bypass role Configuration**‎ `
+                    name: '` Automod bypass user list`',
+                    value: '\u00A0'
                 },
                 {
-                    name: `\`Automod bypass user add <user>\``,
-                    value: `**Adds the provided user to Automod Bypass user Configuration.**`
+                    name: '` Automod bypass user reset`',
+                    value: '\u00A0'
                 },
                 {
-                    name: `\`Automod bypass user remove <user>\``,
-                    value: `**Remove the provided user to Automod Bypass user Configuration.**`
+                    name: '` Automod bypass channel add/remove <channel>`',
+                    value: '\u00A0'
                 },
                 {
-                    name: `\`Automod bypass user list\``,
-                    value: `**Shows the Automod Bypass user list.**`
+                    name: '` Automod bypass channel list`',
+                    value: '\u00A0'
                 },
                 {
-                    name: `\`Automod bypass user reset\``,
-                    value: `**Reset the Automod bypass user Configuration**`
-                },
-                {
-                    name: `\`Automod bypass channel add <channel>\``,
-                    value: `**Adds the provided channel to Automod Bypass channel Configuration.**`
-                },
-                {
-                    name: `\`Automod bypass channel remove <channel>\``,
-                    value: `**Remove the provided channel to Automod Bypass channel Configuration.**`
-                },
-                {
-                    name: `\`Automod bypass channel list\``,
-                    value: `**Shows the Automod Bypass channel list.**`
-                },
-                {
-                    name: `\`Automod bypass channel reset\``,
-                    value: `**Reset the Automod bypass channel Configuration**\n‎ `
+                    name: '` Automod bypass channel reset`',
+                    value: '\u00A0'
                 }
             ])
+            
 
         switch (option) {
             case undefined:
-                return message.channel.send({ embeds: [rex] })
+                return message.channel.send({ embeds: [ricky] })
                 break
             case 'bypass':
                 if (!args[1]) {
@@ -285,7 +270,7 @@ module.exports = {
                                                 new MessageEmbed()
                                                     .setColor(client.color)
                                                     .setDescription(
-                                                        `${client.emoji.tick} | Success! The ${role} role has been successfully added to my Automod bypass role list.`
+                                                        `<a:Tick:1306038825054896209> | Success! The ${role} role has been successfully added to my Automod bypass role list.`
                                                     )
                                             ]
                                         })
@@ -295,7 +280,7 @@ module.exports = {
                                                 new MessageEmbed()
                                                     .setColor(client.color)
                                                     .setDescription(
-                                                        `${client.emoji.cross} | Oops! It appears that ${role} is already in my Automod bypass role list.`
+                                                        `<:emoji_1725906884992:1306038885293494293>  | Oops! It appears that ${role} is already in my Automod bypass role list.`
                                                     )
                                             ]
                                         })
@@ -386,7 +371,7 @@ module.exports = {
                                                 new MessageEmbed()
                                                     .setColor(client.color)
                                                     .setDescription(
-                                                        `${client.emoji.tick} | Success! The ${role} has been successfully removed from my Automod role bypass list.`
+                                                        `<a:Tick:1306038825054896209> | Success! The ${role} has been successfully removed from my Automod role bypass list.`
                                                     )
                                             ]
                                         })
@@ -396,7 +381,7 @@ module.exports = {
                                                 new MessageEmbed()
                                                     .setColor(client.color)
                                                     .setDescription(
-                                                        ` ${client.emoji.cross} | Oops! It appears that the ${role} is not on my Automod role bypass list.`
+                                                        `<:emoji_1725906884992:1306038885293494293>  | Oops! It appears that the ${role} is not on my Automod role bypass list.`
                                                     )
                                             ]
                                         })
@@ -408,7 +393,7 @@ module.exports = {
                                             new MessageEmbed()
                                                 .setColor(client.color)
                                                 .setDescription(
-                                                    ` ${client.emoji.cross} | Oops! It seems there was an issue. Please make sure to provide a valid role.`
+                                                    `<:emoji_1725906884992:1306038885293494293>  | Oops! It seems there was an issue. Please make sure to provide a valid role.`
                                                 )
                                         ]
                                     })
@@ -467,7 +452,7 @@ module.exports = {
                                             new MessageEmbed()
                                                 .setColor(client.color)
                                                 .setDescription(
-                                                    `${client.emoji.cross} | Oops! It seems like there's no designated Automod bypass role set up in this server. No worries, though! You can easily configure one to enhance your experience.`
+                                                    `<:emoji_1725906884992:1306038885293494293>  | Oops! It seems like there's no designated Automod bypass role set up in this server. No worries, though! You can easily configure one to enhance your experience.`
                                                 )
                                         ]
                                     })
@@ -613,7 +598,7 @@ module.exports = {
                                                 new MessageEmbed()
                                                     .setColor(client.color)
                                                     .setDescription(
-                                                        `${client.emoji.tick} | Success! The ${user} role has been successfully added to my Automod bypass user list.`
+                                                        `<a:Tick:1306038825054896209> | Success! The ${user} role has been successfully added to my Automod bypass user list.`
                                                     )
                                             ]
                                         })
@@ -623,7 +608,7 @@ module.exports = {
                                                 new MessageEmbed()
                                                     .setColor(client.color)
                                                     .setDescription(
-                                                        `${client.emoji.cross} | Oops! It appears that ${user} is already in my Automod bypass user list.`
+                                                        `<:emoji_1725906884992:1306038885293494293>  | Oops! It appears that ${user} is already in my Automod bypass user list.`
                                                     )
                                             ]
                                         })
@@ -714,7 +699,7 @@ module.exports = {
                                                 new MessageEmbed()
                                                     .setColor(client.color)
                                                     .setDescription(
-                                                        `${client.emoji.tick} | Success! The ${user} has been successfully removed from my Automod bypass user list.`
+                                                        `<a:Tick:1306038825054896209> | Success! The ${user} has been successfully removed from my Automod bypass user list.`
                                                     )
                                             ]
                                         })
@@ -724,7 +709,7 @@ module.exports = {
                                                 new MessageEmbed()
                                                     .setColor(client.color)
                                                     .setDescription(
-                                                        ` ${client.emoji.cross} | Oops! It appears that the ${user} is not on my Automod bypass user list.`
+                                                        `<:emoji_1725906884992:1306038885293494293>  | Oops! It appears that the ${user} is not on my Automod bypass user list.`
                                                     )
                                             ]
                                         })
@@ -736,7 +721,7 @@ module.exports = {
                                             new MessageEmbed()
                                                 .setColor(client.color)
                                                 .setDescription(
-                                                    ` ${client.emoji.cross} | Oops! It seems there was an issue. Please make sure to provide a valid user.`
+                                                    `<:emoji_1725906884992:1306038885293494293>  | Oops! It seems there was an issue. Please make sure to provide a valid user.`
                                                 )
                                         ]
                                     })
@@ -795,7 +780,7 @@ module.exports = {
                                             new MessageEmbed()
                                                 .setColor(client.color)
                                                 .setDescription(
-                                                    `${client.emoji.cross} | Oops! It seems like there's no designated Automod bypass role set up in this server. No worries, though! You can easily configure one to enhance your experience.`
+                                                    `<:emoji_1725906884992:1306038885293494293>  | Oops! It seems like there's no designated Automod bypass role set up in this server. No worries, though! You can easily configure one to enhance your experience.`
                                                 )
                                         ]
                                     })
@@ -942,7 +927,7 @@ module.exports = {
                                                 new MessageEmbed()
                                                     .setColor(client.color)
                                                     .setDescription(
-                                                        `${client.emoji.tick} | Success! The ${channel} channel has been successfully added to my Automod bypass channel list.`
+                                                        `<a:Tick:1306038825054896209> | Success! The ${channel} channel has been successfully added to my Automod bypass channel list.`
                                                     )
                                             ]
                                         })
@@ -952,7 +937,7 @@ module.exports = {
                                                 new MessageEmbed()
                                                     .setColor(client.color)
                                                     .setDescription(
-                                                        `${client.emoji.cross} | Oops! It appears that ${channel} is already in my Automod bypass channel list.`
+                                                        `<:emoji_1725906884992:1306038885293494293>  | Oops! It appears that ${channel} is already in my Automod bypass channel list.`
                                                     )
                                             ]
                                         })
@@ -1043,7 +1028,7 @@ module.exports = {
                                                 new MessageEmbed()
                                                     .setColor(client.color)
                                                     .setDescription(
-                                                        `${client.emoji.tick} | Success! The ${channel} has been successfully removed from my Automod channel bypass list.`
+                                                        `<a:Tick:1306038825054896209> | Success! The ${channel} has been successfully removed from my Automod channel bypass list.`
                                                     )
                                             ]
                                         })
@@ -1053,7 +1038,7 @@ module.exports = {
                                                 new MessageEmbed()
                                                     .setColor(client.color)
                                                     .setDescription(
-                                                        ` ${client.emoji.cross} | Oops! It appears that the ${channel} is not on my Automod channel bypass list.`
+                                                        `<:emoji_1725906884992:1306038885293494293>  | Oops! It appears that the ${channel} is not on my Automod channel bypass list.`
                                                     )
                                             ]
                                         })
@@ -1065,7 +1050,7 @@ module.exports = {
                                             new MessageEmbed()
                                                 .setColor(client.color)
                                                 .setDescription(
-                                                    ` ${client.emoji.cross} | Oops! It seems there was an issue. Please make sure to provide a valid channel.`
+                                                    `<:emoji_1725906884992:1306038885293494293>  | Oops! It seems there was an issue. Please make sure to provide a valid channel.`
                                                 )
                                         ]
                                     })
@@ -1124,7 +1109,7 @@ module.exports = {
                                             new MessageEmbed()
                                                 .setColor(client.color)
                                                 .setDescription(
-                                                    `${client.emoji.cross} | Oops! It seems like there's no designated Automod bypass channel set up in this server. No worries, though! You can easily configure one to enhance your experience.`
+                                                    `<:emoji_1725906884992:1306038885293494293>  | Oops! It seems like there's no designated Automod bypass channel set up in this server. No worries, though! You can easily configure one to enhance your experience.`
                                                 )
                                         ]
                                     })

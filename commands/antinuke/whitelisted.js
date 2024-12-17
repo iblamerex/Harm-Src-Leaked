@@ -6,13 +6,13 @@ module.exports = {
     category: 'security',
     premium: false,
     run: async (client, message, args) => {
-        if (message.guild.memberCount < 40) {
+        if (message.guild.memberCount < 5) {
             return message.channel.send({
                 embeds: [
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | **Your Server Doesn't Meet My 40 Member Criteria**`
+                            `<:emoji_1725906884992:1306038885293494293>  | **Your Server Doesn't Meet My 5 Member Criteria**`
                         )
                 ]
             })
@@ -28,7 +28,7 @@ module.exports = {
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | **Only the server owner or an extra owner with a higher role than mine is authorized to execute this command.**`
+                            `<:emoji_1725906884992:1306038885293494293>  | **Only the server owner or an extra owner with a higher role than mine is authorized to execute this command.**`
                         )
                 ]
             })
@@ -43,7 +43,7 @@ module.exports = {
             const higherole = new MessageEmbed()
                 .setColor(client.color)
                 .setDescription(
-                    `<:cross:1317733546261217300> | **Only the server owner or extra owner with a higher role than mine can execute this command.**
+                    `<:emoji_1725906884992:1306038885293494293>  | **Only the server owner or extra owner with a higher role than mine can execute this command.**
 
 
 
@@ -62,7 +62,7 @@ module.exports = {
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | **Seems that antinuke module is not enabled in this server.**`
+                            `<:emoji_1725906884992:1306038885293494293>  | **Seems that antinuke module is not enabled in this server.**`
                         )
                 ]
             })
@@ -89,7 +89,7 @@ module.exports = {
                             new MessageEmbed()
                                 .setColor(client.color)
                                 .setDescription(
-                                    `<:cross:1317733546261217300> | **Please again run this command as the database was earlier not assigned.**`
+                                    `<:emoji_1725906884992:1306038885293494293>  | **Please again run this command as the database was earlier not assigned.**`
                                 )
                         ]
                     })
@@ -113,7 +113,7 @@ module.exports = {
                                 new MessageEmbed()
                                     .setColor(client.color)
                                     .setDescription(
-                                        `<:cross:1317733546261217300> | **There are no whitelisted members in this server.**`
+                                        `<:emoji_1725906884992:1306038885293494293>  | **There are no whitelisted members in this server.**`
                                     )
                             ]
                         })

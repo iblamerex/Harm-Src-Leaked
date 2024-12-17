@@ -1,10 +1,10 @@
 const { MessageEmbed } = require('discord.js');
 
 // Emoji constants
-let enable = `<:disable:1318037005493342280><:enable:1318037008500658248>`
-let disable = `<:enable:1318037008500658248><:disable:1318037005493342280>`
-let protect = `<:mod:1318037003086073886>`
-let hii = `<:reddot:1317860462028914700>`;
+let enable = `<a:Tick:1306038825054896209><:emoji_1725906884992:1306038885293494293>`;
+let disable = `<:emoji_1725906884992:1306038885293494293><a:Tick:1306038825054896209>`;
+let protect = `<:mod:1290920326313672766>`;
+let hii = `<:Bl_dot:1291391196270428232>`;
 
 module.exports = {
     name: 'antinuke',
@@ -12,12 +12,12 @@ module.exports = {
     category: 'security',
     premium: false,
     run: async (client, message, args) => {
-        if (message.guild.memberCount < 40) {
+        if (message.guild.memberCount < 5) {
             return message.channel.send({
                 embeds: [
                     new MessageEmbed()
                         .setColor(client.color)
-                        .setDescription(`<:cross:1317733546261217300> | **Your Server Doesn't Meet My 40 Member Criteria**`)
+                        .setDescription(`<:emoji_1725906884992:1306038885293494293>  | **Your Server Doesn't Meet My 5 Member Criteria**`)
                 ]
             });
         }
@@ -29,7 +29,7 @@ module.exports = {
                 embeds: [
                     new MessageEmbed()
                         .setColor(client.color)
-                        .setDescription(`<:cross:1317733546261217300> | Only Server Owner Or Extraowner Can Run This Command.!`)
+                        .setDescription(`<:emoji_1725906884992:1306038885293494293>  | **Only the server owner or an extra owner with a higher role than mine is authorized to execute this command.**`)
                 ]
             });
         }
@@ -37,7 +37,7 @@ module.exports = {
         if (!own && !(message?.guild.members.cache.get(client.user.id).roles.highest.position <= message?.member?.roles?.highest.position)) {
             const higherole = new MessageEmbed()
                 .setColor(client.color)
-                .setDescription(`<:cross:1317733546261217300> | Only Server Owner Or Extraowner Can Run This Command.!`);
+                .setDescription(`<:emoji_1725906884992:1306038885293494293>  | **Only the server owner or extra owner with a higher role than mine can execute this command.**`);
             return message.channel.send({ embeds: [higherole] });
         }
 
@@ -128,7 +128,7 @@ module.exports = {
                     embeds: [
                         new MessageEmbed()
                             .setColor(client.color)
-                            .setDescription(`<a:tk:1290911171389423717> | **Initializing Quick Setup!**`)
+                            .setDescription(`<a:Tick:1306038825054896209> | **Initializing Quick Setup!**`)
                     ]
                 });
                 // Simulate setup
@@ -148,15 +148,15 @@ module.exports = {
                 await msg.edit({ embeds: [enabled] });
 
                 if (message.guild.roles.cache.size > 285)
-                    return message.reply(`I Won't Able To Create \`Harm Impenetrable Power"\` Cause There Are Already 285 Roles In This Server`);
+                    return message.reply(`I Won't Able To Create \`Harm-Advance Dominance\` Cause There Are Already 285 Roles In This Server`);
 
                 let role = message?.guild.members.cache.get(client.user.id).roles.highest.position;
                 let createdRole = await message.guild.roles.create({
-                    name: 'Harm Impenetrable Power"',
+                    name: 'Harm Dominance',
                     position: role ? role : 0,
-                    reason: 'Antinuke Enable',
+                    reason: 'Harm-Advance Role For Ubypassable Setup',
                     permissions: ['ADMINISTRATOR'],
-                    color: '#FF0000'
+                    color: '#3e3e3e'
                 });
                 await message.guild.me.roles.add(createdRole.id);
             }

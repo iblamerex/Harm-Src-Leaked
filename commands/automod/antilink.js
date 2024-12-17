@@ -1,8 +1,8 @@
 const { MessageEmbed } = require('discord.js')
-let enable = `<:disable:1318037005493342280><:enable:1318037008500658248>`
-let disable = `<:enable:1318037008500658248><:disable:1318037005493342280>`
-let protect = `<:mod:1318037003086073886>`
-let hii = `<:reddot:1317860462028914700>`
+let enable = `<:emoji_1725906884992:1306038885293494293><a:Tick:1306038825054896209>`
+let disable = `<a:Tick:1306038825054896209><:emoji_1725906884992:1306038885293494293>`
+let protect = `<:mod:1290920326313672766>`
+let hii = `<:Bl_dot:1291391196270428232>`
 const wait = require('wait')
 
 module.exports = {
@@ -14,13 +14,13 @@ module.exports = {
     premium: false,
     run: async (client, message, args) => {
         const embed = new MessageEmbed().setColor(client.color)
-        if (message.guild.memberCount < 40) {
+        if (message.guild.memberCount < 0) {
             return message.channel.send({
                 embeds: [
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | Your Server Doesn't Meet My 40 Member Criteria`
+                            `<:emoji_1725906884992:1306038885293494293>  | Your Server Doesn't Meet My 30 Member Criteria`
                         )
                 ]
             })
@@ -32,7 +32,7 @@ module.exports = {
                     embed
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | You must have \`Administrator\` permissions to use this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | You must have \`Administrator\` permissions to use this command.`
                         )
                 ]
             })
@@ -43,7 +43,7 @@ module.exports = {
                     embed
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | I don't have \`Administrator\` permissions to execute this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | I don't have \`Administrator\` permissions to execute this command.`
                         )
                 ]
             })
@@ -58,7 +58,7 @@ module.exports = {
                     embed
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | You must have a higher role than me to use this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | You must have a higher role than me to use this command.`
                         )
                 ]
             })
@@ -74,7 +74,7 @@ module.exports = {
             .setColor(client.color)
             .setTitle('Antilink')
             .setDescription(
-                "Enhance your server's protection with Antilink! Our advanced algorithms swiftly identify suspicious links and take immediate action against them, safeguarding your community from potential threats."
+                "Upgrade your server's defense with Antilink! Our cutting-edge algorithms quickly detect dubious links and promptly neutralize them, fortifying your community against potential risks"
             )
             .addField(
                 '__**Antilink Enable**__',
@@ -90,7 +90,7 @@ module.exports = {
             )
             .addField(
                 'Options',
-                '`ban` - Ban users, `kick` - Kick users, `mute` - Mute users'
+                '`ban` - Ban users\n`kick` - Kick users\n`mute` - Mute users'
             )
             .setTimestamp()
             .setFooter(client.user.username, client.user.displayAvatarURL());
@@ -112,7 +112,7 @@ module.exports = {
                         .setColor(client.color)
                         .setTitle('Antilink Enabled')
                         .setDescription(
-                            '**Congratulations! Antilink has been successfully enabled on your server.**'
+                            '**<a:Tick:1306038825054896209> | Congratulations Antilink has been successfully enabled on your server.**'
                         )
                         .addField(
                             'Enhanced Protection',
@@ -134,11 +134,11 @@ module.exports = {
                         )
                         .setColor(client.color)
                         .setDescription(
-                            '**Antilink is already enabled on your server.**'
+                            '**<:emoji_1725906884992:1306038885293494293>  | Antilink is already enabled on your server.**'
                         )
                         .addField(
                             'Current Status',
-                            `Antilink is already enabled on your server.\n\nCurrent Status: ${enable}`
+                            `<:emoji_1725906884992:1306038885293494293>  | Antilink is already enabled on your server.\n\nCurrent Status: ${enable}`
                         )
                         .addField(
                             'To Disable',
@@ -166,7 +166,7 @@ module.exports = {
                         .setColor(client.color)
                         .setTitle('Antilink Disabled')
                         .setDescription(
-                            '**Antilink has been successfully disabled on your server.**'
+                            '**<a:Tick:1306038825054896209> | Antilink has been successfully disabled on your server.**'
                         )
                         .addField(
                             'Impact',
@@ -240,12 +240,12 @@ module.exports = {
                         .setColor(client.color)
                         .setTitle('Punishment Configured')
                         .setDescription(
-                            'The punishment has been successfully configured.'
+                            '<a:Tick:1306038825054896209> | The punishment has been successfully configured.'
                         )
                         .addField('Punishment Type', 'Ban')
                         .addField(
                             'Action Taken',
-                            'Any user violating the rules will be banned from the server.'
+                            '<a:Tick:1306038825054896209> | Any user violating the rules will be banned from the server.'
                         )
                         .setTimestamp()
                         .setFooter(
@@ -262,7 +262,7 @@ module.exports = {
                         .setColor(client.color)
                         .setTitle('Punishment Configured')
                         .setDescription(
-                            'The punishment has been successfully configured.'
+                            '<a:Tick:1306038825054896209> | The punishment has been successfully configured.'
                         )
                         .addField('Punishment Type', 'Kick')
                         .addField(
@@ -285,7 +285,7 @@ module.exports = {
                         .setColor(client.color)
                         .setTitle('Antilink Punishment Configured')
                         .setDescription(
-                            'The antilink punishment has been successfully configured.'
+                            '<a:Tick:1306038825054896209> | The antilink punishment has been successfully configured.'
                         )
                         .addField('Punishment Type', 'Mute')
                         .addField(

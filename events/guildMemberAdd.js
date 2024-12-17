@@ -11,6 +11,14 @@ module.exports = async (client) => {
         if (!member || !member.guild) return
         const { guild } = member
         const settings = await getSettingsar(guild)
+        module.exports = async (client) =>
+        client.on('guildMemberAdd', async (member) => {
+            const settings = await AntiUnverifiedBot.findOne({ guildId: member.guild.id });
+            if (settings && settings.enabled && member.user.bot && !member.user.verified) {
+                await member.kick('Unverified bot blocked by Anti-Unverified Bot feature');
+            }
+        });
+        
 
         if (settings.autorole.length > 0) {
             // Create an array to hold the roles

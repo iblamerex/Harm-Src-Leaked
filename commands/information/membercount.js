@@ -9,8 +9,8 @@ module.exports = {
     run: async (client, message, args) => {
         const embed = new MessageEmbed()
             .setColor(client.color)
-            .setTitle(`**<:count:1317888645663035402> MemberCount**`)
-            .setDescription(`<:member:1317888648456175737>  ${message.guild.memberCount}`)
+            .setTitle(`**<a:has:1291446963795001407> MemberCount**`)
+            .setDescription(`<:me:1291447339399123004>  ${message.guild.memberCount}`)
             .setTimestamp()
 
         message.channel.send({ embeds: [embed] })

@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+const { Message, Client, MessageEmbed } = require('discord.js')
 
 module.exports = {
     name: 'addemoji',
@@ -12,146 +12,73 @@ module.exports = {
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | You must have \`Manage Emoji\` perms to use this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | You must have \`Manage Emoji\` perms to use this command.`
                         )
                 ]
-            });
+            })
         }
-
         if (!message.guild.me.permissions.has('MANAGE_EMOJIS')) {
             return message.channel.send({
                 embeds: [
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | I must have \`Manage Emoji\` perms to use this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | I must have \`Manage Emoji\` perms to use this command.`
                         )
                 ]
-            });
+            })
         }
-
-        // Check if the command is a reply to a message
-        if (!message.reference) {
+        let emoji = args[0]
+        if (!emoji) {
             return message.channel.send({
                 embeds: [
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `You need to reply to a message with an emoji to use this command.`
+                            `<:emoji_1725906884992:1306038885293494293>  | You didn't provided any emoji to add.`
                         )
                 ]
-            });
+            })
         }
-
-        const referencedMessage = await message.channel.messages.fetch(message.reference.messageId);
-        const emojiMatch = referencedMessage.content.match(/<a?:\w+:(\d+)>/);
-
-        if (!emojiMatch) {
+        let emojiId = null
+        try {
+            emojiId = emoji.match(/([0-9]+)/)[0]
+        } catch (err) {}
+        if (!emojiId) {
             return message.channel.send({
                 embeds: [
                     new MessageEmbed()
                         .setColor(client.color)
                         .setDescription(
-                            `<:cross:1317733546261217300> | The replied message doesn't contain a valid emoji.`
+                            `<:emoji_1725906884992:1306038885293494293>  | You provided an invalid emoji.`
                         )
                 ]
-            });
+            })
         }
-
-        const emojiId = emojiMatch[1];
-        const isAnimated = referencedMessage.content.startsWith('<a:');
-        const emojiUrl = `https://cdn.discordapp.com/emojis/${emojiId}${isAnimated ? '.gif' : '.png'}`;
-
-        const embed = new MessageEmbed()
-            .setColor(client.color)
-            .setTitle('Emoji Steal Options')
-            .setDescription('Select an option to steal the emoji or sticker.')
-            .setImage(emojiUrl);
-
-        const row = new MessageActionRow().addComponents(
-            new MessageButton()
-                .setCustomId('steal_emoji')
-                .setLabel('Steal as Emoji')
-                .setStyle('PRIMARY'),
-            new MessageButton()
-                .setCustomId('steal_sticker')
-                .setLabel('Steal as Sticker')
-                .setStyle('PRIMARY'),
-            new MessageButton()
-                .setCustomId('steal_another')
-                .setLabel('Steal Another')
-                .setStyle('SECONDARY')
-        );
-
-        const msg = await message.channel.send({
-            embeds: [embed],
-            components: [row]
-        });
-
-        const filter = (interaction) => interaction.user.id === message.author.id;
-        const collector = msg.createMessageComponentCollector({ filter, time: 60000 });
-
-        collector.on('collect', async (interaction) => {
-            if (interaction.customId === 'steal_emoji') {
-                try {
-                    const emojiName = args[0] || 'stolen_emoji';
-                    const newEmoji = await message.guild.emojis.create(emojiUrl, emojiName);
-                    await interaction.reply({
-                        embeds: [
-                            new MessageEmbed()
-                                .setColor(client.color)
-                                .setDescription(
-                                    `<:tick:1317818894546898985> | Successfully added the emoji ${newEmoji.toString()}.`
-                                )
-                        ],
-                        ephemeral: true
-                    });
-                } catch (err) {
-                    await interaction.reply({
-                        embeds: [
-                            new MessageEmbed()
-                                .setColor(client.color)
-                                .setDescription(
-                                    `<:cross:1317733546261217300> | Unable to add the emoji. Possible reasons: \`Slots are Full\` or \`Mass emojis added\`.`
-                                )
-                        ],
-                        ephemeral: true
-                    });
-                }
-            } else if (interaction.customId === 'steal_sticker') {
-                try {
-                    const stickerName = args[0] || 'stolen_sticker';
-                    // const stickerFormat = isAnimated ? 'APNG' : 'PNG';
-                    // await message.guild.stickers.create(emojiUrl, stickerName, 'sticker description');
-                    await interaction.reply({
-                        content: `Sticker stealing functionality is not supported via the Discord API. Please manually upload stickers via the Discord UI.`,
-                        ephemeral: true
-                    });
-                } catch (err) {
-                    await interaction.reply({
-                        embeds: [
-                            new MessageEmbed()
-                                .setColor(client.color)
-                                .setDescription(
-                                    `<:cross:1317733546261217300> | Unable to add the sticker. Possible reasons: \`Slots are Full\` or \`Invalid Format\`.`
-                                )
-                        ],
-                        ephemeral: true
-                    });
-                }
-            } else if (interaction.customId === 'steal_another') {
-                await interaction.reply({
-                    content: 'Please reply to another emoji to steal.',
-                    ephemeral: true
-                });
-                await msg.delete();
-            }
-        });
-
-        collector.on('end', () => {
-            if (!msg.deleted) {
-                msg.edit({ components: [] });
-            }
-        });
+        let name = args[1] || 'Harm_OP'
+        let link = `https://cdn.discordapp.com/emojis/${emojiId}`
+        try {
+            await message.guild.emojis.create(link, name).then((newEmoji) => {
+                message.channel.send({
+                    embeds: [
+                        new MessageEmbed()
+                            .setColor(client.color)
+                            .setDescription(
+                                `<a:Tick:1306038825054896209> | Successfully added the emoji ${newEmoji.toString()}.`
+                            )
+                    ]
+                })
+            })
+        } catch (err) {
+            message.channel.send({
+                embeds: [
+                    new MessageEmbed()
+                        .setColor(client.color)
+                        .setDescription(
+                            `<:emoji_1725906884992:1306038885293494293>  | I was unable to add the emoji.\nPossible Reasons: \`Mass emojis added\`, \`Slots are Full\`.`
+                        )
+                ]
+            })
+        }
     }
-};
+}

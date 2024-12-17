@@ -77,14 +77,14 @@ module.exports = async (client) => {
                     await client.util.sleep(1000)
                     if (newState.member.user.bot) {
                         await newState.member.roles
-                            .add(role, 'Bot Joined Vc | Harm-Advance Bot Vc Role')
+                            .add(role, 'Bot Joined Vc | Durex-Advance Bot Vc Role')
                             .catch((err) => null)
                     }
                 } else if (oldState.channel && !newState.channel) {
                     await client.util.sleep(1000)
                     if (oldState.member.user.bot) {
                         await oldState.member.roles
-                            .remove(role, 'Bot Left Vc | Harm-Advance Bot Vc Role')
+                            .remove(role, 'Bot Left Vc | Durex-Advance Bot Vc Role')
                             .catch((err) => null)
                     }
                 }
